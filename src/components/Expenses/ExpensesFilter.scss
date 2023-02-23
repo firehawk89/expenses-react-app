@@ -4,21 +4,20 @@
 
   &__control {
     display: flex;
-    width: 100%;
     align-items: center;
     justify-content: space-between;
-    margin: 1rem 0;
+    margin: 1.2rem 0;
   }
 
   &__label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
   }
 
   &__select {
     font: inherit;
     padding: 0.5rem 3rem;
     font-weight: bold;
+    text-align: center;
     border-radius: 6px;
   }
 }

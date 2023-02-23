@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NewExpense.scss";
 import ExpenseForm from "./ExpenseForm";
+import Card from "../UI/Card";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +24,7 @@ const NewExpense = (props) => {
   };
 
   return (
-    <div className="new-expense">
+    <Card className="new-expense">
       {!isEditing ? (
         <button className="new-expense__button" onClick={startEditingHandler}>
           Add New Expense
@@ -34,7 +35,7 @@ const NewExpense = (props) => {
           onCancel={stopEditingHandler}
         />
       )}
-    </div>
+    </Card>
   );
 };
 

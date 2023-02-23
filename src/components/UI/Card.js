@@ -2,7 +2,14 @@ import React from "react";
 import "./Card.scss";
 
 const Card = (props) => {
-  const classes = "card " + props.className;
+  let classes;
+
+  if (props.className !== undefined) {
+    classes = "card " + props.className;
+  } else {
+    classes = "card";
+  }
+
   return <div className={classes}>{props.children}</div>;
 };
 

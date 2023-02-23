@@ -4,13 +4,8 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
 button {
+  font: inherit;
   background-color: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -33,7 +28,6 @@ h4,
 h5,
 h6,
 p,
-img,
 ol,
 ul,
 li,

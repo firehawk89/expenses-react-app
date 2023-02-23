@@ -2,15 +2,23 @@
   &__controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
     text-align: left;
+
+    @media (max-width: 580px) {
+      justify-content: center;
+    }
   }
 
   &__label {
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 0.5rem;
     display: block;
+
+    @media (max-width: 580px) {
+      font-size: 0.9rem;
+    }
   }
 
   &__input {
@@ -18,11 +26,23 @@
     padding: 0.5rem;
     border-radius: 6px;
     border: 1px solid #ccc;
-    width: 20rem;
+    width: 15rem;
+    height: 2.5rem;
     max-width: 100%;
+
+    @media (max-width: 580px) {
+      width: 16rem;
+    }
   }
 
   &__actions {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @media (max-width: 580px) {
+      justify-content: center;
+    }
   }
 }

@@ -1,9 +1,15 @@
 .expenses-list {
   list-style: none;
-  padding: 0;
 
   &__fallback {
+    margin-top: 2rem;
     color: white;
+    font-size: 1rem;
+    font-weight: 700;
     text-align: center;
+
+    @media (min-width: 580px) {
+      font-size: 1.2rem;
+    }
   }
 }
