@@ -7,7 +7,6 @@ const ExpenseItem = (props) => {
   return (
     <li>
       <Card className="expense-item">
-        {/* everything below is children of a Card (props.children) */}
         <ExpenseDate date={props.date} />
         <div className="expense-item__description">
           <h2 className="expense-item__title">{props.title}</h2>

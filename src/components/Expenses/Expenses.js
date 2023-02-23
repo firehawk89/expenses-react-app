@@ -16,18 +16,6 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === year;
   });
 
-  /* const renderedItems = [];
-  for (let dataItem of props.data) {
-    renderedItems.push(
-      <ExpenseItem
-        key={dataItem.id}
-        title={dataItem.title}
-        amount={dataItem.amount}
-        date={dataItem.date}
-      />
-    );
-  } */
-
   return (
     <Card className="expenses">
       <ExpensesFilter selected={year} onSelectedItem={onSelectedItemHandler} />
