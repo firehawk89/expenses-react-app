@@ -2,6 +2,6 @@
   padding: 1.2rem;
   background-color: #f8dfff;
   display: flex;
-  justify-content: space-around;
-  height: 10rem;
+  flex-wrap: wrap;
+  row-gap: 1rem;
 }
