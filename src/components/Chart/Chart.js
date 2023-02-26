@@ -4,7 +4,7 @@ import "./Chart.scss";
 
 const Chart = (props) => {
   const dataPointValues = props.dataPoints.map((dataPoint) => dataPoint.value);
-  const totalMax = Math.max(...dataPointValues);
+  const total = dataPointValues.reduce((a, b) => a + b, 0);
 
   return (
     <div className="chart">
@@ -12,7 +12,7 @@ const Chart = (props) => {
         <ChartBar
           key={dataPoint.label}
           value={dataPoint.value}
-          maxValue={totalMax}
+          total={total}
           label={dataPoint.label}
         />
       ))}

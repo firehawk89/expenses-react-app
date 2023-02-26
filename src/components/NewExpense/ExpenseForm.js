@@ -5,6 +5,12 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  /*
+  const [isValidTitle, setIsValidTitle] = useState(true);
+  const [isValidAmount, setIsValidAmount] = useState(true);
+  const [isValidDate, setIsValidDate] = useState(true);
+  */
+
   /* const [userInput, setUserInput] = useState({
     enteredTitle: "",
     enteredAmount: "",
@@ -13,6 +19,8 @@ const ExpenseForm = (props) => {
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
+    //setIsValidTitle(true);
+
     /* setUserInput((prevState) => {
       return { ...prevState, enteredTitle: event.target.value };
     }); */
@@ -20,10 +28,12 @@ const ExpenseForm = (props) => {
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
+    //setIsValidAmount(true);
   };
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
+    //setIsValidDate(true);
   };
 
   const submitHandler = (event) => {
@@ -45,34 +55,46 @@ const ExpenseForm = (props) => {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label className="new-expense__label">Title</label>
+          <label className="new-expense__label" for="title">
+            Title
+          </label>
           <input
-            className="new-expense__input"
+            id="title"
+            className={`new-expense__input ${!isValidTitle ? "error" : ""}`}
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__control">
-          <label className="new-expense__label">Amount</label>
+          <label className="new-expense__label" for="amount">
+            Amount
+          </label>
           <input
-            className="new-expense__input"
+            id="amount"
+            className={`new-expense__input ${!isValidAmount ? "error" : ""}`}
             type="number"
             min="0.01"
             step="0.01"
             value={enteredAmount}
             onChange={amountChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__control">
-          <label className="new-expense__label">Date</label>
+          <label className="new-expense__label" for="date">
+            Date
+          </label>
           <input
-            className="new-expense__input"
+            id="date"
+            className={`new-expense__input ${!isValidDate ? "error" : ""}`}
             type="date"
             min="2019-01-01"
             max="2023-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
+            required
           />
         </div>
       </div>
