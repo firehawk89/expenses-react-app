@@ -60,7 +60,8 @@ const ExpenseForm = (props) => {
           </label>
           <input
             id="title"
-            className={`new-expense__input ${!isValidTitle ? "error" : ""}`}
+            //className={`new-expense__input ${!isValidTitle ? "error" : ""}`}
+            className={`new-expense__input`}
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
@@ -73,7 +74,8 @@ const ExpenseForm = (props) => {
           </label>
           <input
             id="amount"
-            className={`new-expense__input ${!isValidAmount ? "error" : ""}`}
+            //className={`new-expense__input ${!isValidAmount ? "error" : ""}`}
+            className={`new-expense__input`}
             type="number"
             min="0.01"
             step="0.01"
@@ -88,7 +90,8 @@ const ExpenseForm = (props) => {
           </label>
           <input
             id="date"
-            className={`new-expense__input ${!isValidDate ? "error" : ""}`}
+            //className={`new-expense__input ${!isValidDate ? "error" : ""}`}
+            className={`new-expense__input`}
             type="date"
             min="2019-01-01"
             max="2023-12-31"
