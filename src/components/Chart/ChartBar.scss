@@ -26,7 +26,7 @@
   &__fill {
     background-color: #4826b9;
     width: 100%;
-    transition: all 0.6s cubic-bezier(0, 0.55, 0.45, 1);
+    transition: all 1s ease-in-out;
   }
 
   &__label {
