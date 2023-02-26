@@ -33,10 +33,16 @@ const App = () => {
     });
   };
 
+  const deleteItemHandler = (itemId) => {
+    setExpenses((prevExpenses) => {
+      return prevExpenses.filter((expense) => expense.id !== itemId);
+    });
+  };
+
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses data={expenses} />
+      <Expenses data={expenses} onDeleteItem={deleteItemHandler} />
     </div>
   );
 };
