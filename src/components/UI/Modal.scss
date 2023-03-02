@@ -1,0 +1,48 @@
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__delete-btn {
+    background-color: red;
+  }
+}
