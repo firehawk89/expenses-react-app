@@ -5,22 +5,4 @@
   width: 50rem;
   max-width: 95%;
   text-align: center;
-
-  &__btn {
-    padding: 1rem 2rem;
-    border: 1px solid #40005d;
-    background-color: #40005d;
-    color: white;
-    border-radius: 12px;
-
-    @media (max-width: 580px) {
-      padding: 0.8rem 1.6rem;
-    }
-
-    &:hover,
-    &:active {
-      background-color: #510674;
-      border-color: #510674;
-    }
-  }
 }

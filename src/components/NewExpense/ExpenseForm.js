@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../UI/Button";
 import "./ExpenseForm.scss";
 
 const ExpenseForm = (props) => {
@@ -46,7 +47,6 @@ const ExpenseForm = (props) => {
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
-            required
           />
         </div>
         <div className="new-expense__control">
@@ -61,7 +61,6 @@ const ExpenseForm = (props) => {
             step="0.01"
             value={enteredAmount}
             onChange={amountChangeHandler}
-            required
           />
         </div>
         <div className="new-expense__control">
@@ -76,21 +75,14 @@ const ExpenseForm = (props) => {
             max="2023-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
-            required
           />
         </div>
       </div>
       <div className="new-expense__actions">
-        <button
-          className="new-expense__btn"
-          type="button"
-          onClick={props.onCancel}
-        >
-          Cancel
-        </button>
-        <button className="new-expense__btn" type="submit">
-          Add Expense
-        </button>
+        <Button type="button" onClick={props.onCancel}>
+          Close
+        </Button>
+        <Button type="submit">Add Expense</Button>
       </div>
     </form>
   );
