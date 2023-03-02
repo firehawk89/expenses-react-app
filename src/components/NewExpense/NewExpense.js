@@ -26,7 +26,7 @@ const NewExpense = (props) => {
   return (
     <Card className="new-expense">
       {!isEditing ? (
-        <button className="new-expense__button" onClick={startEditingHandler}>
+        <button className="new-expense__btn" onClick={startEditingHandler}>
           Add New Expense
         </button>
       ) : (
