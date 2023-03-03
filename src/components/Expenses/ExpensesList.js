@@ -5,18 +5,18 @@ import "./ExpensesList.scss";
 
 const ExpensesList = (props) => {
   const [warning, setWarning] = useState(false);
-  const [expenseId, setExpenseId] = useState("");
-  const [expenseTitle, setExpenseTitle] = useState("");
-  //make object in useSate
+  const [expenseData, setExpenseData] = useState({
+    expenseId: null,
+    expenseTitle: "",
+  });
 
   if (props.items.length === 0) {
     return <h2 className="expenses-list__fallback">Found no expenses.</h2>;
   }
 
-  const warningHandler = (id, name) => {
+  const warningHandler = (id, title) => {
     setWarning(true);
-    setExpenseId(id);
-    setExpenseTitle(name);
+    setExpenseData({ expenseId: id, expenseTitle: title });
   };
 
   const closeModalHandler = (event) => {
@@ -30,7 +30,7 @@ const ExpensesList = (props) => {
 
   const deleteItemHandler = () => {
     setWarning(false);
-    props.onDeleteItem(expenseId);
+    props.onDeleteItem(expenseData.expenseId);
   };
 
   return (
@@ -39,7 +39,7 @@ const ExpensesList = (props) => {
         className={`${warning ? "active" : ""}`}
         onConfirm={deleteItemHandler}
         onClose={closeModalHandler}
-        expense={expenseTitle}
+        expense={expenseData.expenseTitle}
       />
       <ul className="expenses-list">
         {props.items.map((expense) => (
