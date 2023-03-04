@@ -17,6 +17,9 @@ const ExpensesList = (props) => {
     setExpenseData({ expenseId: id, expenseTitle: title });
   };
 
+  let modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
+  let modalTitle = "Delete expense";
+
   const closeModalHandler = (event) => {
     if (
       event.target.classList.contains("modal") ||
@@ -38,6 +41,8 @@ const ExpensesList = (props) => {
         onConfirm={deleteItemHandler}
         onClose={closeModalHandler}
         expense={expenseData.expenseTitle}
+        title={modalTitle}
+        text={modalText}
       />
       <ul className="expenses-list">
         {items.map((expense) => (

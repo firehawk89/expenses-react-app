@@ -44,5 +44,9 @@
 
   &__delete-btn {
     background-color: red;
+
+    &:hover {
+      background-color: #ce0000;
+    }
   }
 }

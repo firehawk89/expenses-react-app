@@ -4,7 +4,7 @@ import Button from "./Button";
 import "./Modal.scss";
 
 const Modal = (props) => {
-  const { className, expense, onClose, onConfirm } = props;
+  const { className, title, text, onClose, onConfirm } = props;
 
   return (
     <div
@@ -12,10 +12,8 @@ const Modal = (props) => {
       onClick={onClose}
     >
       <Card className="modal__content">
-        <h2 className="modal__title">Delete expense</h2>
-        <p className="modal__text">
-          Are you sure you want to delete expense "{expense}"?
-        </p>
+        <h2 className="modal__title">{title}</h2>
+        <p className="modal__text">{text}</p>
         <div className="modal__actions">
           <Button type="button" onClick={onClose} className="modal__cancel-btn">
             Cancel
