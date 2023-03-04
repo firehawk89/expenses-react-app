@@ -2,8 +2,9 @@ import React from "react";
 import "./ExpensesFilter.scss";
 
 const ExpensesFilter = (props) => {
+  const { selected, onSelectedItem } = props;
   const changeYearHandler = (event) => {
-    props.onSelectedItem(event.target.value);
+    onSelectedItem(event.target.value);
   };
 
   return (
@@ -12,10 +13,10 @@ const ExpensesFilter = (props) => {
         <label className="expenses-filter__label">Filter by year</label>
         <select
           className="expenses-filter__select"
-          value={props.selected}
+          value={selected}
           onChange={changeYearHandler}
         >
-          <option value="None">None</option>
+          <option value="none">All</option>
           <option value="2023">2023</option>
           <option value="2022">2022</option>
           <option value="2021">2021</option>

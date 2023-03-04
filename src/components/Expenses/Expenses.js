@@ -6,33 +6,27 @@ import ExpensesChart from "./ExpensesChart";
 import "./Expenses.scss";
 
 const Expenses = (props) => {
-  const [year, setYear] = useState("None");
+  const { data, onDeleteItem } = props;
+  const [year, setYear] = useState("none");
 
   const onSelectedItemHandler = (selectedYear) => {
     setYear(selectedYear);
   };
 
-  /* const filteredExpenses = props.data.filter((expense) => {
-    return expense.date.getFullYear().toString() === year;
-  }); */
-
   let filteredExpenses;
-  if (year !== "None") {
-    filteredExpenses = props.data.filter((expense) => {
+  if (year !== "none") {
+    filteredExpenses = data.filter((expense) => {
       return expense.date.getFullYear().toString() === year;
     });
   } else {
-    filteredExpenses = props.data;
+    filteredExpenses = data;
   }
 
   return (
     <Card className="expenses">
       <ExpensesFilter selected={year} onSelectedItem={onSelectedItemHandler} />
       <ExpensesChart expenses={filteredExpenses} />
-      <ExpensesList
-        items={filteredExpenses}
-        onDeleteItem={props.onDeleteItem}
-      />
+      <ExpensesList items={filteredExpenses} onDeleteItem={onDeleteItem} />
     </Card>
   );
 };

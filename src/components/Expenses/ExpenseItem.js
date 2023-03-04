@@ -6,17 +6,18 @@ import "./ExpenseItem.scss";
 import deleteImg from "../../img/trash.svg";
 
 const ExpenseItem = (props) => {
+  const { id, title, amount, date, onDelete } = props;
   const deleteHandler = () => {
-    props.onDelete(props.id, props.title);
+    onDelete(id, title);
   };
 
   return (
     <li>
       <Card className="expense-item">
-        <ExpenseDate date={props.date} />
+        <ExpenseDate date={date} />
         <div className="expense-item__description">
-          <h2 className="expense-item__title">{props.title}</h2>
-          <span className="expense-item__price">${props.amount}</span>
+          <h2 className="expense-item__title">{title}</h2>
+          <span className="expense-item__price">${amount}</span>
         </div>
         <Button
           className="expense-item__delete"

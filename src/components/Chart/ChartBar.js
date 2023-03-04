@@ -2,10 +2,11 @@ import React from "react";
 import "./ChartBar.scss";
 
 const ChartBar = (props) => {
+  const { total, value, label } = props;
   let barFillHeight = "0%";
 
-  if (props.total > 0) {
-    barFillHeight = Math.round((props.value / props.total) * 100) + "%";
+  if (total > 0) {
+    barFillHeight = Math.round((value / total) * 100) + "%";
   }
 
   return (
@@ -16,7 +17,7 @@ const ChartBar = (props) => {
           style={{ height: barFillHeight }}
         ></div>
       </div>
-      <div className="chart-bar__label">{props.label}</div>
+      <div className="chart-bar__label">{label}</div>
     </div>
   );
 };

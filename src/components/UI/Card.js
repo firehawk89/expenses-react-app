@@ -2,10 +2,10 @@ import React from "react";
 import "./Card.scss";
 
 const Card = (props) => {
+  const { className, children } = props;
+
   return (
-    <div className={props.className ? props.className + " card" : "card"}>
-      {props.children}
-    </div>
+    <div className={className ? className + " card" : "card"}>{children}</div>
   );
 };
 

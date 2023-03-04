@@ -4,10 +4,11 @@ import ExpenseItem from "./ExpenseItem";
 import "./ExpensesList.scss";
 
 const ExpensesList = (props) => {
+  const { items, onDeleteItem } = props;
   const [warning, setWarning] = useState(false);
   const [expenseData, setExpenseData] = useState({});
 
-  if (props.items.length === 0) {
+  if (items.length === 0) {
     return <h2 className="expenses-list__fallback">Found no expenses.</h2>;
   }
 
@@ -27,7 +28,7 @@ const ExpensesList = (props) => {
 
   const deleteItemHandler = () => {
     setWarning(false);
-    props.onDeleteItem(expenseData.expenseId);
+    onDeleteItem(expenseData.expenseId);
   };
 
   return (
@@ -39,7 +40,7 @@ const ExpensesList = (props) => {
         expense={expenseData.expenseTitle}
       />
       <ul className="expenses-list">
-        {props.items.map((expense) => (
+        {items.map((expense) => (
           <ExpenseItem
             key={expense.id}
             id={expense.id}
