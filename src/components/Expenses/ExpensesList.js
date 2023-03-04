@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
-import "./ExpensesList.scss";
 
 const ExpensesList = (props) => {
   const { items, onDeleteItem } = props;

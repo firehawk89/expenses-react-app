@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "./Card";
 import Button from "./Button";
-import "./Modal.scss";
 
 const Modal = (props) => {
   const { className, title, text, onClose, onConfirm } = props;

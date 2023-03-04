@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
-import "./ExpenseForm.scss";
 
 const ExpenseForm = (props) => {
   const { onSaveExpenseData, onCancel } = props;

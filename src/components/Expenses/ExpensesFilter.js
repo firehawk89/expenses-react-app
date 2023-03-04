@@ -1,5 +1,4 @@
 import React from "react";
-import "./ExpensesFilter.scss";
 
 const ExpensesFilter = (props) => {
   const { selected, onSelectedItem } = props;

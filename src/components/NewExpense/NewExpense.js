@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./NewExpense.scss";
-import ExpenseForm from "./ExpenseForm";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import ExpenseForm from "./ExpenseForm";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);

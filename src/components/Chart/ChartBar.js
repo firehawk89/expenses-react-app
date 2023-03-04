@@ -1,5 +1,4 @@
 import React from "react";
-import "./ChartBar.scss";
 
 const ChartBar = (props) => {
   const { total, value, label } = props;
