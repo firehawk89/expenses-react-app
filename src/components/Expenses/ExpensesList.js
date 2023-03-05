@@ -1,6 +1,20 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
+
+/* const Modal = () => {
+  return (
+    <Modal
+      className={`${warning ? "active" : ""}`}
+      onConfirm={deleteItemHandler}
+      onClose={closeModalHandler}
+      expense={expenseData.expenseTitle}
+      title={modalTitle}
+      text={modalText}
+    />
+  );
+}; */
 
 const ExpensesList = (props) => {
   const { items, onDeleteItem } = props;
@@ -16,8 +30,8 @@ const ExpensesList = (props) => {
     setExpenseData({ expenseId: id, expenseTitle: title });
   };
 
-  let modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
-  let modalTitle = "Delete expense";
+  const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
+  const modalTitle = "Delete expense";
 
   const closeModalHandler = (event) => {
     if (
@@ -35,14 +49,17 @@ const ExpensesList = (props) => {
 
   return (
     <div>
-      <Modal
-        className={`${warning ? "active" : ""}`}
-        onConfirm={deleteItemHandler}
-        onClose={closeModalHandler}
-        expense={expenseData.expenseTitle}
-        title={modalTitle}
-        text={modalText}
-      />
+      {ReactDOM.createPortal(
+        <Modal
+          className={`${warning ? "active" : ""}`}
+          onConfirm={deleteItemHandler}
+          onClose={closeModalHandler}
+          expense={expenseData.expenseTitle}
+          title={modalTitle}
+          text={modalText}
+        />,
+        document.getElementById("modal-root")
+      )}
       <ul className="expenses-list">
         {items.map((expense) => (
           <ExpenseItem
