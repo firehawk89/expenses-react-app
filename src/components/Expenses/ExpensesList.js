@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import ReactDOM from "react-dom";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
@@ -48,7 +48,7 @@ const ExpensesList = (props) => {
   };
 
   return (
-    <div>
+    <Fragment>
       {ReactDOM.createPortal(
         <Modal
           className={`${warning ? "active" : ""}`}
@@ -72,7 +72,7 @@ const ExpensesList = (props) => {
           />
         ))}
       </ul>
-    </div>
+    </Fragment>
   );
 };
 

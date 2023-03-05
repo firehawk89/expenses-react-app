@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
@@ -40,10 +40,10 @@ const App = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses data={expenses} onDeleteItem={deleteItemHandler} />
-    </div>
+    </Fragment>
   );
 };
 

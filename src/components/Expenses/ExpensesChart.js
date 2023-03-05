@@ -1,6 +1,5 @@
 import React from "react";
 import Chart from "../Chart/Chart";
-import Card from "../UI/Card";
 
 const ExpensesChart = (props) => {
   const chartDataPoints = [
@@ -23,11 +22,7 @@ const ExpensesChart = (props) => {
     chartDataPoints[expenseMonth].value += expense.amount;
   }
 
-  return (
-    <Card>
-      <Chart dataPoints={chartDataPoints} />
-    </Card>
-  );
+  return <Chart dataPoints={chartDataPoints} />;
 };
 
 export default ExpensesChart;
