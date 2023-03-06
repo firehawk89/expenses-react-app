@@ -11,22 +11,20 @@ const ExpenseItem = (props) => {
   };
 
   return (
-    <li>
-      <Card className="expense-item">
-        <ExpenseDate date={date} />
-        <div className="expense-item__description">
-          <h2 className="expense-item__title">{title}</h2>
-          <span className="expense-item__price">${amount}</span>
-        </div>
-        <Button
-          className="expense-item__delete"
-          type="button"
-          onClick={deleteHandler}
-        >
-          <img src={deleteImg} alt="Delete" />
-        </Button>
-      </Card>
-    </li>
+    <Card className="expenses__item" tagName="li">
+      <ExpenseDate date={date} />
+      <div className="expenses__item-description">
+        <h2 className="expenses__item-title">{title}</h2>
+        <span className="expenses__item-price">${amount}</span>
+      </div>
+      <Button
+        className="expenses__item-delete-btn"
+        type="button"
+        onClick={deleteHandler}
+      >
+        <img src={deleteImg} alt="Delete" />
+      </Button>
+    </Card>
   );
 };
 

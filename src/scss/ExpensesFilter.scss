@@ -1,19 +1,19 @@
-.expenses-filter {
+.expenses__filter {
   color: white;
   padding: 0 1rem;
 
-  &__control {
+  &-control {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 1.2rem 0;
   }
 
-  &__label {
+  &-label {
     font-weight: 700;
   }
 
-  &__select {
+  &-select {
     font: inherit;
     padding: 0.5rem 1.5rem;
     font-weight: bold;

@@ -4,4 +4,121 @@
   margin: 2rem auto;
   width: 50rem;
   max-width: 95%;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    background-color: #4b4b4b;
+
+    &-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 5.5rem;
+      height: 5.5rem;
+      border: 1px solid #c1c1c1;
+      background-color: #2a2a2a;
+      color: white;
+      border-radius: 12px;
+    }
+
+    &-month {
+      font-size: 0.7rem;
+      font-weight: 600;
+
+      @media (min-width: 580px) {
+        font-size: 0.9rem;
+      }
+    }
+
+    &-year {
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      @media (min-width: 580px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    &-day {
+      font-size: 0.7rem;
+
+      @media (min-width: 580px) {
+        font-size: 0.9rem;
+      }
+    }
+
+    &-description {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-flow: column-reverse;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      flex: 1;
+
+      @media (min-width: 580px) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    &-title {
+      color: white;
+      font-size: 1rem;
+      flex: 1;
+      text-align: right;
+
+      @media (min-width: 580px) {
+        font-size: 1.25rem;
+        margin: 0 1rem;
+        text-align: left;
+      }
+    }
+
+    &-price {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background-color: #40005d;
+      border: 1px solid #c1c1c1;
+      padding: 0.5rem;
+      border-radius: 12px;
+
+      @media (min-width: 580px) {
+        font-size: 1.25rem;
+        padding: 0.5rem 1.5rem;
+      }
+    }
+
+    &-delete-btn {
+      background-color: #1f1f1f !important;
+      padding: 0.6rem !important;
+      margin-left: 0.8rem;
+      transition: all 0.3s ease;
+
+      img {
+        width: 18px;
+        height: 18px;
+
+        @media (min-width: 580px) {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      &:focus {
+        transform: scale(0.95);
+      }
+    }
+  }
 }

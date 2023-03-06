@@ -7,11 +7,11 @@ const ExpensesFilter = (props) => {
   };
 
   return (
-    <div className="expenses-filter">
-      <div className="expenses-filter__control">
-        <label className="expenses-filter__label">Filter by year</label>
+    <div className="expenses__filter">
+      <div className="expenses__filter-control">
+        <label className="expenses__filter-label">Filter by year</label>
         <select
-          className="expenses-filter__select"
+          className="expenses__filter-select"
           value={selected}
           onChange={changeYearHandler}
         >

@@ -22,7 +22,7 @@ const ExpensesList = (props) => {
   const [expenseData, setExpenseData] = useState({});
 
   if (items.length === 0) {
-    return <h2 className="expenses-list__fallback">Found no expenses.</h2>;
+    return <h2 className="expenses__list-fallback">Found no expenses.</h2>;
   }
 
   const warningHandler = (id, title) => {
@@ -60,7 +60,7 @@ const ExpensesList = (props) => {
         />,
         document.getElementById("modal-root")
       )}
-      <ul className="expenses-list">
+      <ul className="expenses__list">
         {items.map((expense) => (
           <ExpenseItem
             key={expense.id}
