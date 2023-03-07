@@ -13,4 +13,8 @@
     background-color: #510674;
     border-color: #510674;
   }
+
+  &:disabled {
+    background-color: rgba(81, 6, 116, 0.8);
+  }
 }
