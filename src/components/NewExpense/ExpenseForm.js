@@ -1,20 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Button from "../UI/Button";
 
+const initialState = {
+  value: "",
+  isValid: null,
+};
+
+const inputReducer = (state, action) => {
+  if (action.type === "USER_INPUT") {
+    return { value: action.value, isValid: checkInput(action.value) };
+  }
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: checkInput(state.value) };
+  }
+  if (action.type === "CLEAR_INPUT") {
+    return initialState;
+  }
+  return { value: "", isValid: false };
+};
+
+const checkInput = (value) => {
+  return value.trim().length !== 0;
+};
+
 const ExpenseForm = (props) => {
+  const [titleState, dispatchTitle] = useReducer(inputReducer, initialState);
+  const [amountState, dispatchAmount] = useReducer(inputReducer, initialState);
+  const [dateState, dispatchDate] = useReducer(inputReducer, initialState);
+
   const { onSaveExpenseData, onCancel } = props;
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
-  const [titleIsValid, setTitleIsValid] = useState();
-  const [amountIsValid, setAmountIsValid] = useState();
-  const [dateIsValid, setDateIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
+
+  const { isValid: titleIsValid } = titleState;
+  const { isValid: amountIsValid } = amountState;
+  const { isValid: dateIsValid } = dateState;
 
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(titleIsValid && amountIsValid && dateIsValid);
-    }, 500);
+    }, 250);
 
     return () => {
       clearTimeout(identifier);
@@ -22,42 +46,43 @@ const ExpenseForm = (props) => {
   }, [titleIsValid, amountIsValid, dateIsValid]);
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-
-  const validateTitleHandler = () => {
-    setTitleIsValid(enteredTitle.trim().length !== 0);
+    dispatchTitle({ type: "USER_INPUT", value: event.target.value });
   };
 
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
-  };
-
-  const validateAmountHandler = () => {
-    setAmountIsValid(enteredAmount.trim().length !== 0);
+    dispatchAmount({ type: "USER_INPUT", value: event.target.value });
   };
 
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+    dispatchDate({ type: "USER_INPUT", value: event.target.value });
+  };
+
+  const validateTitleHandler = () => {
+    dispatchTitle({ type: "INPUT_BLUR" });
+  };
+
+  const validateAmountHandler = () => {
+    dispatchAmount({ type: "INPUT_BLUR" });
   };
 
   const validateDateHandler = () => {
-    setDateIsValid(enteredDate.trim().length !== 0);
+    dispatchDate({ type: "INPUT_BLUR" });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const expenseData = {
-      title: enteredTitle,
-      amount: +enteredAmount,
-      date: new Date(enteredDate),
+      title: titleState.value,
+      amount: +amountState.value,
+      date: new Date(dateState.value),
     };
 
     onSaveExpenseData(expenseData);
-    setEnteredTitle("");
-    setEnteredAmount("");
-    setEnteredDate("");
+
+    dispatchTitle({ type: "CLEAR_INPUT" });
+    dispatchAmount({ type: "CLEAR_INPUT" });
+    dispatchDate({ type: "CLEAR_INPUT" });
   };
 
   return (
@@ -70,10 +95,10 @@ const ExpenseForm = (props) => {
           <input
             id="title"
             className={`new-expense__input${
-              titleIsValid === false ? " error" : ""
+              titleState.isValid === false ? " error" : ""
             }`}
             type="text"
-            value={enteredTitle}
+            value={titleState.value}
             onChange={titleChangeHandler}
             onBlur={validateTitleHandler}
           />
@@ -85,12 +110,12 @@ const ExpenseForm = (props) => {
           <input
             id="amount"
             className={`new-expense__input${
-              amountIsValid === false ? " error" : ""
+              amountState.isValid === false ? " error" : ""
             }`}
             type="number"
             min="0.01"
             step="0.01"
-            value={enteredAmount}
+            value={amountState.value}
             onChange={amountChangeHandler}
             onBlur={validateAmountHandler}
           />
@@ -102,12 +127,12 @@ const ExpenseForm = (props) => {
           <input
             id="date"
             className={`new-expense__input${
-              dateIsValid === false ? " error" : ""
+              dateState.isValid === false ? " error" : ""
             }`}
             type="date"
             min="2019-01-01"
             max="2023-12-31"
-            value={enteredDate}
+            value={dateState.value}
             onChange={dateChangeHandler}
             onBlur={validateDateHandler}
           />
