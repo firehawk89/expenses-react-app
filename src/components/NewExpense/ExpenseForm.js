@@ -24,11 +24,11 @@ const checkInput = (value) => {
 };
 
 const ExpenseForm = (props) => {
+  const { onSaveExpenseData, onCancel } = props;
+
   const [titleState, dispatchTitle] = useReducer(inputReducer, initialState);
   const [amountState, dispatchAmount] = useReducer(inputReducer, initialState);
   const [dateState, dispatchDate] = useReducer(inputReducer, initialState);
-
-  const { onSaveExpenseData, onCancel } = props;
   const [formIsValid, setFormIsValid] = useState(false);
 
   const { isValid: titleIsValid } = titleState;
