@@ -2,17 +2,52 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ExpenseForm from "./ExpenseForm";
+import useHttpRequest from "../../hooks/use-http-request";
 
 const NewExpense = (props) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { isLoading, sendRequest: addExpense } = useHttpRequest();
 
-  const onSaveExpenseDataHandler = (enteredExpenseData) => {
+  const createExpense = (enteredExpenseData, expenseData) => {
+    const generatedId = expenseData.name; // firebase-specific => "name" contains generated id
+    const createdExpense = {
+      id: generatedId,
+      title: enteredExpenseData.title,
+      amount: enteredExpenseData.amount,
+      date: enteredExpenseData.date,
+    };
+
+    props.onAddExpense(createdExpense);
+    setIsEditing(false);
+  };
+
+  const onSaveExpenseDataHandler = async (enteredExpenseData) => {
+    addExpense(
+      {
+        url: "https://react-expenses-30273-default-rtdb.europe-west1.firebasedatabase.app/expenses.json",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          title: enteredExpenseData.title,
+          amount: enteredExpenseData.amount,
+          date: enteredExpenseData.date.toISOString().split("T")[0],
+        },
+      },
+
+      createExpense.bind(null, enteredExpenseData)
+    );
+
+    /*
     const expenseData = {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
     props.onAddExpense(expenseData);
+	
     setIsEditing(false);
+	*/
   };
 
   const startEditingHandler = () => {
@@ -31,6 +66,7 @@ const NewExpense = (props) => {
         </Button>
       ) : (
         <ExpenseForm
+          loading={isLoading}
           onSaveExpenseData={onSaveExpenseDataHandler}
           onCancel={stopEditingHandler}
         />

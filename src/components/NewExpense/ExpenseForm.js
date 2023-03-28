@@ -24,7 +24,7 @@ const checkInput = (value) => {
 };
 
 const ExpenseForm = (props) => {
-  const { onSaveExpenseData, onCancel } = props;
+  const { onSaveExpenseData, onCancel, loading } = props;
 
   const [titleState, dispatchTitle] = useReducer(inputReducer, initialState);
   const [amountState, dispatchAmount] = useReducer(inputReducer, initialState);
@@ -143,7 +143,7 @@ const ExpenseForm = (props) => {
           Close
         </Button>
         <Button type="submit" disabled={!formIsValid}>
-          Add Expense
+          {loading ? "Sending..." : "Add Expense"}
         </Button>
       </div>
     </form>

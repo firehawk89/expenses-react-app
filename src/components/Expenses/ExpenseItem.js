@@ -6,6 +6,7 @@ import deleteImg from "../../img/trash.svg";
 
 const ExpenseItem = (props) => {
   const { id, title, amount, date, onDelete } = props;
+
   const deleteHandler = () => {
     onDelete(id, title);
   };

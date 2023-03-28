@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import useHttpRequest from "./hooks/use-http-request";
 
+/*
 const dummyExpenses = [
   {
     id: "e1",
@@ -23,9 +25,35 @@ const dummyExpenses = [
     date: new Date(2021, 5, 12),
   },
 ];
+*/
 
 const App = () => {
-  const [expenses, setExpenses] = useState(dummyExpenses);
+  const [expenses, setExpenses] = useState([]);
+  const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest();
+
+  useEffect(() => {
+    const updateExpenses = (expenseObj) => {
+      const loadedExpenses = [];
+
+      for (const expenseKey in expenseObj) {
+        loadedExpenses.push({
+          id: expenseKey,
+          title: expenseObj[expenseKey].title,
+          amount: expenseObj[expenseKey].amount,
+          date: new Date(expenseObj[expenseKey].date),
+        });
+      }
+
+      setExpenses(loadedExpenses);
+    };
+
+    fetchExpenses(
+      {
+        url: "https://react-expenses-30273-default-rtdb.europe-west1.firebasedatabase.app/expenses.json",
+      },
+      updateExpenses
+    );
+  }, [fetchExpenses]);
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
@@ -42,7 +70,12 @@ const App = () => {
   return (
     <Fragment>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses data={expenses} onDeleteItem={deleteItemHandler} />
+      <Expenses
+        isLoading={isLoading}
+        error={error}
+        data={expenses}
+        onDeleteItem={deleteItemHandler}
+      />
     </Fragment>
   );
 };
