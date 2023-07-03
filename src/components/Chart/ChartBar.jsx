@@ -1,5 +1,4 @@
-const ChartBar = (props) => {
-  const { total, value, label } = props;
+const ChartBar = ({ total, value, label }) => {
   let barFillHeight = "0%";
 
   if (total > 0) {
