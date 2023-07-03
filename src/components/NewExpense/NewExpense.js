@@ -38,16 +38,6 @@ const NewExpense = (props) => {
 
       createExpense.bind(null, enteredExpenseData)
     );
-
-    /*
-    const expenseData = {
-      ...enteredExpenseData,
-      id: Math.random().toString(),
-    };
-    props.onAddExpense(expenseData);
-	
-    setIsEditing(false);
-	*/
   };
 
   const startEditingHandler = () => {
