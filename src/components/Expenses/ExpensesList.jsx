@@ -34,7 +34,9 @@ const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
   const deleteItemHandler = async () => {
     deleteExpense(
       {
-        url: `https://react-expenses-30273-default-rtdb.europe-west1.firebasedatabase.app/expenses/${expenseData.expenseId}.json`,
+        url: `${import.meta.env.VITE_DATABASE_URL}/expenses/${
+          expenseData.expenseId
+        }.json`,
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

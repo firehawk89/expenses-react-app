@@ -49,7 +49,7 @@ const App = () => {
 
     fetchExpenses(
       {
-        url: "https://react-expenses-30273-default-rtdb.europe-west1.firebasedatabase.app/expenses.json",
+        url: `${import.meta.env.VITE_DATABASE_URL}/expenses.json`,
       },
       updateExpenses
     );

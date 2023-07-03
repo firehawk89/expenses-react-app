@@ -24,7 +24,7 @@ const NewExpense = ({ onAddExpense }) => {
   const onSaveExpenseDataHandler = async (enteredExpenseData) => {
     addExpense(
       {
-        url: "https://react-expenses-30273-default-rtdb.europe-west1.firebasedatabase.app/expenses.json",
+        url: `${import.meta.env.VITE_DATABASE_URL}/expenses.json`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
