@@ -2,7 +2,7 @@ import React from "react";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import deleteImg from "../../img/trash.svg";
+import deleteImg from "../../assets/img/trash.svg";
 
 const ExpenseItem = ({ id, title, amount, date, onDelete }) => {
   const deleteHandler = () => {
