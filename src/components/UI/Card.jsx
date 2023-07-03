@@ -1,5 +1,3 @@
-import React from "react";
-
 const Card = ({ className, tagName, children }) => {
   const CardTag = tagName ? tagName : "div";
 
