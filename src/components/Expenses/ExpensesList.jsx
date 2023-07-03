@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 import useHttpRequest from "../../hooks/use-http-request";
 import Modal from "../UI/Modal";
@@ -77,7 +77,7 @@ const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
   }
 
   return (
-    <Fragment>
+    <>
       {ReactDOM.createPortal(
         <Modal
           className={`${warning ? "active" : ""}`}
@@ -90,7 +90,7 @@ const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
         document.getElementById("modal-root")
       )}
       {content}
-    </Fragment>
+    </>
   );
 };
 

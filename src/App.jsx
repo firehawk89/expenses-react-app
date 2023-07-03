@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import useHttpRequest from "./hooks/use-http-request";
@@ -68,7 +68,7 @@ const App = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses
         isLoading={isLoading}
@@ -76,7 +76,7 @@ const App = () => {
         data={expenses}
         onDeleteItem={deleteItemHandler}
       />
-    </Fragment>
+    </>
   );
 };
 
