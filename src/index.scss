@@ -2,43 +2,18 @@
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-button {
-  font: inherit;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-  border: none;
-  color: inherit;
+  margin: 0;
   padding: 0;
-  cursor: pointer;
 }
 
 html,
-body,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul,
-li,
-form,
-label {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+body {
+  height: 100%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 ol,
@@ -46,11 +21,17 @@ ul {
   list-style: none;
 }
 
-html {
-  font-family: "Poppins", sans-serif;
+button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: inherit;
 }
 
 body {
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   line-height: 1;
   font-weight: 400;
