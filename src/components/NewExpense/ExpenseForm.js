@@ -70,17 +70,25 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel, loading }) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const expenseData = {
-      title: titleState.value,
-      amount: +amountState.value,
-      date: new Date(dateState.value),
-    };
+    if (formIsValid) {
+      const expenseData = {
+        title: titleState.value,
+        amount: +amountState.value,
+        date: new Date(dateState.value),
+      };
 
-    onSaveExpenseData(expenseData);
+      onSaveExpenseData(expenseData);
 
-    dispatchTitle({ type: "CLEAR_INPUT" });
-    dispatchAmount({ type: "CLEAR_INPUT" });
-    dispatchDate({ type: "CLEAR_INPUT" });
+      dispatchTitle({ type: "CLEAR_INPUT" });
+      dispatchAmount({ type: "CLEAR_INPUT" });
+      dispatchDate({ type: "CLEAR_INPUT" });
+    } else if (!titleIsValid) {
+      dispatchTitle({ type: "INPUT_BLUR" });
+    } else if (!amountIsValid) {
+      dispatchAmount({ type: "INPUT_BLUR" });
+    } else {
+      dispatchDate({ type: "INPUT_BLUR" });
+    }
   };
 
   return (
@@ -140,9 +148,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel, loading }) => {
         <Button type="button" onClick={onCancel}>
           Close
         </Button>
-        <Button type="submit" disabled={!formIsValid}>
-          {loading ? "Sending..." : "Add Expense"}
-        </Button>
+        <Button type="submit">{loading ? "Sending..." : "Add Expense"}</Button>
       </div>
     </form>
   );
