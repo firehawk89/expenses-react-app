@@ -51,9 +51,7 @@ const NewExpense = ({ onAddExpense }) => {
   return (
     <Card className="new-expense">
       {!isEditing ? (
-        <Button className="new-expense__btn" onClick={startEditingHandler}>
-          Add New Expense
-        </Button>
+        <Button onClick={startEditingHandler}>Add New Expense</Button>
       ) : (
         <ExpenseForm
           loading={isLoading}
