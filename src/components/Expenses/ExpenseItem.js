@@ -4,9 +4,7 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import deleteImg from "../../img/trash.svg";
 
-const ExpenseItem = (props) => {
-  const { id, title, amount, date, onDelete } = props;
-
+const ExpenseItem = ({ id, title, amount, date, onDelete }) => {
   const deleteHandler = () => {
     onDelete(id, title);
   };

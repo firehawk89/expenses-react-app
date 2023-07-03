@@ -4,8 +4,7 @@ import useHttpRequest from "../../hooks/use-http-request";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
 
-const ExpensesList = (props) => {
-  const { items, onDeleteItem } = props;
+const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
   const [warning, setWarning] = useState(false);
   const [expenseData, setExpenseData] = useState({});
   const { sendRequest: deleteExpense } = useHttpRequest();
@@ -69,11 +68,11 @@ const ExpensesList = (props) => {
 
   let content = expenseList;
 
-  if (props.error) {
-    content = <h2 className="expenses__list-fallback">{props.error}</h2>;
+  if (error) {
+    content = <h2 className="expenses__list-fallback">{error}</h2>;
   }
 
-  if (props.isLoading) {
+  if (isLoading) {
     content = <h2 className="expenses__list-fallback">Loading expenses...</h2>;
   }
 

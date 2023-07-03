@@ -1,7 +1,6 @@
 import React from "react";
 
-const ExpensesFilter = (props) => {
-  const { selected, onSelectedItem } = props;
+const ExpensesFilter = ({ selected, onSelectedItem }) => {
   const changeYearHandler = (event) => {
     onSelectedItem(event.target.value);
   };

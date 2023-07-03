@@ -4,8 +4,7 @@ import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 
-const Expenses = (props) => {
-  const { data, onDeleteItem } = props;
+const Expenses = ({ data, onDeleteItem, isLoading, error }) => {
   const [year, setYear] = useState("none");
 
   const onSelectedItemHandler = (selectedYear) => {
@@ -26,8 +25,8 @@ const Expenses = (props) => {
       <ExpensesFilter selected={year} onSelectedItem={onSelectedItemHandler} />
       <ExpensesChart expenses={filteredExpenses} />
       <ExpensesList
-        isLoading={props.isLoading}
-        error={props.error}
+        isLoading={isLoading}
+        error={error}
         items={filteredExpenses}
         onDeleteItem={onDeleteItem}
       />

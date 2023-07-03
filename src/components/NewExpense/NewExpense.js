@@ -4,7 +4,7 @@ import Button from "../UI/Button";
 import ExpenseForm from "./ExpenseForm";
 import useHttpRequest from "../../hooks/use-http-request";
 
-const NewExpense = (props) => {
+const NewExpense = ({ onAddExpense }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { isLoading, sendRequest: addExpense } = useHttpRequest();
 
@@ -17,7 +17,7 @@ const NewExpense = (props) => {
       date: enteredExpenseData.date,
     };
 
-    props.onAddExpense(createdExpense);
+    onAddExpense(createdExpense);
     setIsEditing(false);
   };
 
