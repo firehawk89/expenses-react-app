@@ -46,13 +46,6 @@ const ExpensesList = (props) => {
     );
   };
 
-  /*
-  const deleteItemHandler = () => {
-    onDeleteItem(expenseData.expenseId);
-    setWarning(false);
-  };
-  */
-
   let expenseList = (
     <h2 className="expenses__list-fallback">Found no expenses.</h2>
   );
