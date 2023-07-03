@@ -38,13 +38,13 @@ body {
   background-color: #3f3f3f;
 }
 
-@import "./scss/Card.scss";
-@import "./scss/Button.scss";
-@import "./scss/Modal.scss";
+@import "./assets/scss/Card.scss";
+@import "./assets/scss/Button.scss";
+@import "./assets/scss/Modal.scss";
 
-@import "./scss/ExpensesFilter.scss";
-@import "./scss/Chart.scss";
-@import "./scss/ExpensesList.scss";
+@import "./assets/scss/ExpensesFilter.scss";
+@import "./assets/scss/Chart.scss";
+@import "./assets/scss/ExpensesList.scss";
 
-@import "./scss/NewExpense.scss";
-@import "./scss/Expenses.scss";
+@import "./assets/scss/NewExpense.scss";
+@import "./assets/scss/Expenses.scss";
