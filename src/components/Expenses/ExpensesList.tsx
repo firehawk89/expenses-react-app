@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ReactDOM from "react-dom";
 import useHttpRequest from "../../hooks/use-http-request";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
 import Expense from "../../models/expense-model";
+import { ModalContext } from "../../store/modal-context";
 
 type ExpensesListProps = {
   items: Expense[];
@@ -18,7 +19,7 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
   isLoading,
   error,
 }) => {
-  const [warning, setWarning] = useState(false);
+  const modalCtx = useContext(ModalContext);
   const [expenseData, setExpenseData] = useState<{
     expenseId: string;
     expenseTitle: string;
@@ -26,25 +27,16 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
   const { sendRequest: deleteExpense } = useHttpRequest();
 
   const warningHandler = (id: string, title: string) => {
-    setWarning(true);
+    modalCtx.displayModal();
     setExpenseData({ expenseId: id, expenseTitle: title });
   };
 
   const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
   const modalTitle = "Delete expense";
 
-  const closeModalHandler = (event: React.SyntheticEvent<HTMLElement>) => {
-    if (
-      (event.target as HTMLElement).classList.contains("modal") ||
-      (event.target as HTMLElement).classList.contains("modal__cancel-btn")
-    ) {
-      setWarning(false);
-    }
-  };
-
   const removeExpense = (expenseId: string) => {
     onDeleteItem(expenseId);
-    setWarning(false);
+    modalCtx.removeModal();
   };
 
   const deleteItemHandler = async () => {
@@ -98,11 +90,10 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
     <>
       {ReactDOM.createPortal(
         <Modal
-          className={`${warning ? "active" : ""}`}
-          onConfirm={deleteItemHandler}
-          onClose={closeModalHandler}
+          className={`${modalCtx.isActive ? "active" : ""}`}
           title={modalTitle}
           text={modalText}
+          onConfirm={deleteItemHandler}
         />,
         document.getElementById("modal-root") as HTMLDivElement
       )}
