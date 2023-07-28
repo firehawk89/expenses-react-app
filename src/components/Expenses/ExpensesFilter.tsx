@@ -1,5 +1,13 @@
-const ExpensesFilter = ({ selected, onSelectedItem }) => {
-  const changeYearHandler = (event) => {
+type ExpensesFilterProps = {
+  selected: string;
+  onSelectedItem: (year: string) => void;
+};
+
+const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
+  selected,
+  onSelectedItem,
+}) => {
+  const changeYearHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onSelectedItem(event.target.value);
   };
 

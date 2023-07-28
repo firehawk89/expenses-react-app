@@ -2,46 +2,25 @@ import { useState, useEffect } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import useHttpRequest from "./hooks/use-http-request";
-
-/*
-const dummyExpenses = [
-  {
-    id: "e1",
-    title: "Toilet Paper",
-    amount: 94.12,
-    date: new Date(2020, 7, 14),
-  },
-  { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-  {
-    id: "e3",
-    title: "Car Insurance",
-    amount: 294.67,
-    date: new Date(2021, 2, 28),
-  },
-  {
-    id: "e4",
-    title: "New Desk (Wooden)",
-    amount: 450,
-    date: new Date(2021, 5, 12),
-  },
-];
-*/
+import Expense from "./models/expense-model";
 
 const App = () => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest();
 
   useEffect(() => {
-    const updateExpenses = (expenseObj) => {
+    const updateExpenses = (expensesObj: Expense[]) => {
       const loadedExpenses = [];
 
-      for (const expenseKey in expenseObj) {
-        loadedExpenses.push({
-          id: expenseKey,
-          title: expenseObj[expenseKey].title,
-          amount: expenseObj[expenseKey].amount,
-          date: new Date(expenseObj[expenseKey].date),
-        });
+      for (const expenseKey in expensesObj) {
+        loadedExpenses.push(
+          new Expense(
+            expenseKey,
+            expensesObj[expenseKey].title,
+            expensesObj[expenseKey].amount,
+            new Date(expensesObj[expenseKey].date)
+          )
+        );
       }
 
       setExpenses(loadedExpenses);
@@ -55,13 +34,13 @@ const App = () => {
     );
   }, [fetchExpenses]);
 
-  const addExpenseHandler = (expense) => {
+  const addExpenseHandler = (expense: Expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
 
-  const deleteItemHandler = (itemId) => {
+  const deleteItemHandler = (itemId: string) => {
     setExpenses((prevExpenses) => {
       return prevExpenses.filter((expense) => expense.id !== itemId);
     });

@@ -3,11 +3,24 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
+import Expense from "../../models/expense-model";
 
-const Expenses = ({ data, onDeleteItem, isLoading, error }) => {
+type ExpensesProps = {
+  data: Expense[];
+  onDeleteItem: (id: string) => void;
+  isLoading: boolean;
+  error: string | null;
+};
+
+const Expenses: React.FC<ExpensesProps> = ({
+  data,
+  onDeleteItem,
+  isLoading,
+  error,
+}) => {
   const [year, setYear] = useState("none");
 
-  const onSelectedItemHandler = (selectedYear) => {
+  const onSelectedItemHandler = (selectedYear: string) => {
     setYear(selectedYear);
   };
 

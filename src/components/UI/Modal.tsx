@@ -1,7 +1,21 @@
 import Card from "./Card";
 import Button from "./Button";
 
-const Modal = ({ className, title, text, onClose, onConfirm }) => {
+type ModalProps = {
+  className: string;
+  title: string;
+  text: string;
+  onClose: (event: React.SyntheticEvent<HTMLElement>) => void;
+  onConfirm: () => void;
+};
+
+const Modal: React.FC<ModalProps> = ({
+  className,
+  title,
+  text,
+  onClose,
+  onConfirm,
+}) => {
   return (
     <div
       className={className ? className + " modal" : "modal"}

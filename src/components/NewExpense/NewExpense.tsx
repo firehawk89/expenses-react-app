@@ -3,12 +3,20 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ExpenseForm from "./ExpenseForm";
 import useHttpRequest from "../../hooks/use-http-request";
+import Expense from "../../models/expense-model";
 
-const NewExpense = ({ onAddExpense }) => {
+type NewExpenseProps = {
+  onAddExpense: (expense: Expense) => void;
+};
+
+const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { isLoading, sendRequest: addExpense } = useHttpRequest();
 
-  const createExpense = (enteredExpenseData, expenseData) => {
+  const createExpense = (
+    enteredExpenseData: Expense,
+    expenseData: { name: string }
+  ) => {
     const generatedId = expenseData.name; // firebase-specific => "name" contains generated id
     const createdExpense = {
       id: generatedId,
@@ -21,7 +29,7 @@ const NewExpense = ({ onAddExpense }) => {
     setIsEditing(false);
   };
 
-  const onSaveExpenseDataHandler = async (enteredExpenseData) => {
+  const onSaveExpenseDataHandler = async (enteredExpenseData: Expense) => {
     addExpense(
       {
         url: `${import.meta.env.VITE_DATABASE_URL}/expenses.json`,
@@ -51,7 +59,9 @@ const NewExpense = ({ onAddExpense }) => {
   return (
     <Card className="new-expense">
       {!isEditing ? (
-        <Button onClick={startEditingHandler}>Add New Expense</Button>
+        <Button type="button" onClick={startEditingHandler}>
+          Add New Expense
+        </Button>
       ) : (
         <ExpenseForm
           loading={isLoading}

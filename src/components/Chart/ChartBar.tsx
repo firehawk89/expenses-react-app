@@ -1,4 +1,10 @@
-const ChartBar = ({ total, value, label }) => {
+type ChartBarProps = {
+  total: number;
+  value: number;
+  label: string;
+};
+
+const ChartBar: React.FC<ChartBarProps> = ({ total, value, label }) => {
   let barFillHeight = "0%";
 
   if (total > 0) {

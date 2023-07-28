@@ -1,6 +1,11 @@
+import Expense from "../../models/expense-model";
 import Chart from "../Chart/Chart";
 
-const ExpensesChart = ({ expenses }) => {
+type ExpensesChartProps = {
+  expenses: Expense[];
+};
+
+const ExpensesChart: React.FC<ExpensesChartProps> = ({ expenses }) => {
   const chartDataPoints = [
     { label: "Jan", value: 0 },
     { label: "Feb", value: 0 },

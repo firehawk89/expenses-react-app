@@ -3,13 +3,29 @@ import ReactDOM from "react-dom";
 import useHttpRequest from "../../hooks/use-http-request";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
+import Expense from "../../models/expense-model";
 
-const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
+type ExpensesListProps = {
+  items: Expense[];
+  onDeleteItem: (id: string) => void;
+  isLoading: boolean;
+  error: string | null;
+};
+
+const ExpensesList: React.FC<ExpensesListProps> = ({
+  items,
+  onDeleteItem,
+  isLoading,
+  error,
+}) => {
   const [warning, setWarning] = useState(false);
-  const [expenseData, setExpenseData] = useState({});
+  const [expenseData, setExpenseData] = useState<{
+    expenseId: string;
+    expenseTitle: string;
+  }>({ expenseId: "", expenseTitle: "" });
   const { sendRequest: deleteExpense } = useHttpRequest();
 
-  const warningHandler = (id, title) => {
+  const warningHandler = (id: string, title: string) => {
     setWarning(true);
     setExpenseData({ expenseId: id, expenseTitle: title });
   };
@@ -17,16 +33,16 @@ const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
   const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
   const modalTitle = "Delete expense";
 
-  const closeModalHandler = (event) => {
+  const closeModalHandler = (event: React.SyntheticEvent<HTMLElement>) => {
     if (
-      event.target.classList.contains("modal") ||
-      event.target.classList.contains("modal__cancel-btn")
+      (event.target as HTMLElement).classList.contains("modal") ||
+      (event.target as HTMLElement).classList.contains("modal__cancel-btn")
     ) {
       setWarning(false);
     }
   };
 
-  const removeExpense = (expenseId) => {
+  const removeExpense = (expenseId: string) => {
     onDeleteItem(expenseId);
     setWarning(false);
   };
@@ -85,11 +101,10 @@ const ExpensesList = ({ items, onDeleteItem, isLoading, error }) => {
           className={`${warning ? "active" : ""}`}
           onConfirm={deleteItemHandler}
           onClose={closeModalHandler}
-          expense={expenseData.expenseTitle}
           title={modalTitle}
           text={modalText}
         />,
-        document.getElementById("modal-root")
+        document.getElementById("modal-root") as HTMLDivElement
       )}
       {content}
     </>

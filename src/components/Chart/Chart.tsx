@@ -1,7 +1,9 @@
 import Card from "../UI/Card";
 import ChartBar from "./ChartBar";
 
-const Chart = ({ dataPoints }) => {
+type ChartProps = { dataPoints: { label: string; value: number }[] };
+
+const Chart: React.FC<ChartProps> = ({ dataPoints }) => {
   const dataPointValues = dataPoints.map((dataPoint) => dataPoint.value);
   const total = dataPointValues.reduce((a, b) => a + b, 0);
 

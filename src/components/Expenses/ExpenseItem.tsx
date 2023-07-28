@@ -3,9 +3,25 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import deleteImg from "../../assets/img/trash.svg";
 
-const ExpenseItem = ({ id, title, amount, date, onDelete }) => {
+type ExpenseItemProps = {
+  id: string | undefined;
+  title: string;
+  amount: number;
+  date: Date;
+  onDelete: (id: string, title: string) => void;
+};
+
+const ExpenseItem: React.FC<ExpenseItemProps> = ({
+  id,
+  title,
+  amount,
+  date,
+  onDelete,
+}) => {
   const deleteHandler = () => {
-    onDelete(id, title);
+    if (id) {
+      onDelete(id, title);
+    }
   };
 
   return (

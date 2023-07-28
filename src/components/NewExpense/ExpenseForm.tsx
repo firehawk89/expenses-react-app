@@ -1,33 +1,59 @@
 import { useEffect, useReducer, useState } from "react";
+import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
+
+type ReactFormProps = {
+  onSaveExpenseData: (data: Expense) => void;
+  onCancel: () => void;
+  loading: boolean;
+};
+
+enum InputActionType {
+  INPUT = "USER_INPUT",
+  BLUR = "INPUT_BLUR",
+  CLEAR = "CLEAR_INPUT",
+}
+
+type InputState = {
+  value: string;
+};
+
+type InputAction = { type: InputActionType.INPUT; value: string };
+type BlurAction = { type: InputActionType.BLUR };
+type ClearAction = { type: InputActionType.CLEAR };
+type FormInputActions = InputAction | BlurAction | ClearAction;
 
 const initialState = {
   value: "",
   isValid: null,
 };
 
-const inputReducer = (state, action) => {
-  if (action.type === "USER_INPUT") {
-    return { value: action.value, isValid: checkInput(action.value) };
+const inputReducer = (state: InputState, action: FormInputActions) => {
+  switch (action.type) {
+    case InputActionType.INPUT:
+      return { value: action.value, isValid: checkInput(action.value) };
+    case InputActionType.BLUR:
+      return { value: state.value, isValid: checkInput(state.value) };
+    case InputActionType.CLEAR:
+      return initialState;
+    default:
+      return { value: "", isValid: false };
   }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: checkInput(state.value) };
-  }
-  if (action.type === "CLEAR_INPUT") {
-    return initialState;
-  }
-  return { value: "", isValid: false };
 };
 
-const checkInput = (value) => {
+const checkInput = (value: string) => {
   return value.trim().length !== 0;
 };
 
-const ExpenseForm = ({ onSaveExpenseData, onCancel, loading }) => {
+const ExpenseForm: React.FC<ReactFormProps> = ({
+  onSaveExpenseData,
+  onCancel,
+  loading,
+}) => {
   const [titleState, dispatchTitle] = useReducer(inputReducer, initialState);
   const [amountState, dispatchAmount] = useReducer(inputReducer, initialState);
   const [dateState, dispatchDate] = useReducer(inputReducer, initialState);
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
 
   const { isValid: titleIsValid } = titleState;
   const { isValid: amountIsValid } = amountState;
@@ -43,35 +69,35 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel, loading }) => {
     };
   }, [titleIsValid, amountIsValid, dateIsValid]);
 
-  const titleChangeHandler = (event) => {
-    dispatchTitle({ type: "USER_INPUT", value: event.target.value });
+  const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatchTitle({ type: InputActionType.INPUT, value: event.target.value });
   };
 
-  const amountChangeHandler = (event) => {
-    dispatchAmount({ type: "USER_INPUT", value: event.target.value });
+  const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatchAmount({ type: InputActionType.INPUT, value: event.target.value });
   };
 
-  const dateChangeHandler = (event) => {
-    dispatchDate({ type: "USER_INPUT", value: event.target.value });
+  const dateChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatchDate({ type: InputActionType.INPUT, value: event.target.value });
   };
 
   const validateTitleHandler = () => {
-    dispatchTitle({ type: "INPUT_BLUR" });
+    dispatchTitle({ type: InputActionType.BLUR });
   };
 
   const validateAmountHandler = () => {
-    dispatchAmount({ type: "INPUT_BLUR" });
+    dispatchAmount({ type: InputActionType.BLUR });
   };
 
   const validateDateHandler = () => {
-    dispatchDate({ type: "INPUT_BLUR" });
+    dispatchDate({ type: InputActionType.BLUR });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (formIsValid) {
-      const expenseData = {
+      const expenseData: Expense = {
         title: titleState.value,
         amount: +amountState.value,
         date: new Date(dateState.value),
@@ -79,15 +105,15 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel, loading }) => {
 
       onSaveExpenseData(expenseData);
 
-      dispatchTitle({ type: "CLEAR_INPUT" });
-      dispatchAmount({ type: "CLEAR_INPUT" });
-      dispatchDate({ type: "CLEAR_INPUT" });
+      dispatchTitle({ type: InputActionType.CLEAR });
+      dispatchAmount({ type: InputActionType.CLEAR });
+      dispatchDate({ type: InputActionType.CLEAR });
     } else if (!titleIsValid) {
-      dispatchTitle({ type: "INPUT_BLUR" });
+      dispatchTitle({ type: InputActionType.BLUR });
     } else if (!amountIsValid) {
-      dispatchAmount({ type: "INPUT_BLUR" });
+      dispatchAmount({ type: InputActionType.BLUR });
     } else {
-      dispatchDate({ type: "INPUT_BLUR" });
+      dispatchDate({ type: InputActionType.BLUR });
     }
   };
 
