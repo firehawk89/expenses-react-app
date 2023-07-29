@@ -90,7 +90,6 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
     <>
       {ReactDOM.createPortal(
         <Modal
-          className={`${modalCtx.isActive ? "active" : ""}`}
           title={modalTitle}
           text={modalText}
           onConfirm={deleteItemHandler}
