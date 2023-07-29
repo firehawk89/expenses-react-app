@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <main>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses
         isLoading={isLoading}
@@ -55,7 +55,7 @@ const App = () => {
         data={expenses}
         onDeleteItem={deleteItemHandler}
       />
-    </>
+    </main>
   );
 };
 
