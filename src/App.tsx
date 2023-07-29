@@ -3,6 +3,7 @@ import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import useHttpRequest from "./hooks/use-http-request";
 import Expense from "./models/expense-model";
+import Container from "./components/UI/Container";
 
 const App = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -48,13 +49,15 @@ const App = () => {
 
   return (
     <main>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses
-        isLoading={isLoading}
-        error={error}
-        data={expenses}
-        onDeleteItem={deleteItemHandler}
-      />
+      <Container>
+        <NewExpense onAddExpense={addExpenseHandler} />
+        <Expenses
+          isLoading={isLoading}
+          error={error}
+          data={expenses}
+          onDeleteItem={deleteItemHandler}
+        />
+      </Container>
     </main>
   );
 };
