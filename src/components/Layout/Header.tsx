@@ -1,14 +1,15 @@
 import logo from "../../assets/img/logo.png";
 import Container from "../UI/Container";
 import Menu from "./Menu";
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <Container>
-        <div className="header__body">
+        <div className={styles["header-body"]}>
           <img
-            className="header__logo"
+            className={styles["header-logo"]}
             src={logo}
             alt="Expenses React App Logo"
           />

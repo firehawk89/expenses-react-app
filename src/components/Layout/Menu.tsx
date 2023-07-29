@@ -1,18 +1,20 @@
+import styles from "./Menu.module.scss";
+
 const Menu: React.FC = () => {
   return (
-    <ul className="menu">
+    <ul className={styles.menu}>
       <li>
-        <a className="menu__link" href="">
+        <a className={styles["menu-link"]} href="">
           Home
         </a>
       </li>
       <li>
-        <a className="menu__link" href="">
+        <a className={styles["menu-link"]} href="">
           Log In
         </a>
       </li>
       <li>
-        <a className="menu__link" href="">
+        <a className={styles["menu-link"]} href="">
           Sign Up
         </a>
       </li>
