@@ -1,4 +1,5 @@
 type ButtonProps = {
+  id?: string;
   type: "button" | "submit" | "reset";
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -7,6 +8,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({
+  id,
   className,
   type,
   disabled,
@@ -15,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
+      id={id}
       className={className ? className + " btn" : "btn"}
       type={type || "button"}
       onClick={onClick}
