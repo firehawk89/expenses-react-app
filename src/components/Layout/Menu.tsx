@@ -1,22 +1,46 @@
+import { NavLink } from "react-router-dom";
+import { baseUrl } from "../../utils/constants";
 import styles from "./Menu.module.scss";
 
 const Menu: React.FC = () => {
   return (
     <ul className={styles.menu}>
       <li>
-        <a className={styles["menu-link"]} href="">
+        <NavLink
+          to={baseUrl}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles["menu-link"]} ${styles["link-active"]}`
+              : styles["menu-link"]
+          }
+          end
+        >
           Home
-        </a>
+        </NavLink>
       </li>
       <li>
-        <a className={styles["menu-link"]} href="">
+        <NavLink
+          to={`${baseUrl}login`}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles["menu-link"]} ${styles["link-active"]}`
+              : styles["menu-link"]
+          }
+        >
           Log In
-        </a>
+        </NavLink>
       </li>
       <li>
-        <a className={styles["menu-link"]} href="">
+        <NavLink
+          to={`${baseUrl}register`}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles["menu-link"]} ${styles["link-active"]}`
+              : styles["menu-link"]
+          }
+        >
           Sign Up
-        </a>
+        </NavLink>
       </li>
     </ul>
   );
