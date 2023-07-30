@@ -4,7 +4,7 @@ type ExpenseDateProps = {
   date: Date;
 };
 
-const ExpenseDate: React.FC<ExpenseDateProps> = ({ date }) => {
+const ExpenseItemDate: React.FC<ExpenseDateProps> = ({ date }) => {
   const month = date.toLocaleString("en-US", { month: "long" });
   const day = date.toLocaleString("en-US", { day: "2-digit" });
   const year = date.getFullYear();
@@ -18,4 +18,4 @@ const ExpenseDate: React.FC<ExpenseDateProps> = ({ date }) => {
   );
 };
 
-export default ExpenseDate;
+export default ExpenseItemDate;

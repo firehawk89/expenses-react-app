@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import ExpenseForm from "./ExpenseForm";
+import NewExpenseForm from "./NewExpenseForm";
 import useHttpRequest from "../../hooks/use-http-request";
 import Expense from "../../models/expense-model";
 import styles from "./NewExpense.module.scss";
@@ -64,7 +64,7 @@ const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
           Add New Expense
         </Button>
       ) : (
-        <ExpenseForm
+        <NewExpenseForm
           loading={isLoading}
           onSaveExpenseData={onSaveExpenseDataHandler}
           onCancel={stopEditingHandler}

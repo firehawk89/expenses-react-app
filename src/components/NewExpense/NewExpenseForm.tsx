@@ -46,7 +46,7 @@ const checkInput = (value: string) => {
   return value.trim().length !== 0;
 };
 
-const ExpenseForm: React.FC<ReactFormProps> = ({
+const NewExpenseForm: React.FC<ReactFormProps> = ({
   onSaveExpenseData,
   onCancel,
   loading,
@@ -187,4 +187,4 @@ const ExpenseForm: React.FC<ReactFormProps> = ({
   );
 };
 
-export default ExpenseForm;
+export default NewExpenseForm;

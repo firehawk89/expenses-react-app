@@ -1,4 +1,4 @@
-import ExpenseDate from "./ExpenseDate";
+import ExpenseItemDate from "./ExpenseItemDate";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import deleteImg from "../../assets/img/trash.svg";
@@ -27,7 +27,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
 
   return (
     <Card className={styles["expenses-item"]} tagName="li">
-      <ExpenseDate date={date} />
+      <ExpenseItemDate date={date} />
       <div className={styles["expenses-item-description"]}>
         <h2 className={styles["expenses-item-title"]}>{title}</h2>
         <span className={styles["expenses-item-price"]}>${amount}</span>
