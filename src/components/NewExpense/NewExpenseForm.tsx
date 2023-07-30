@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
 import styles from "./NewExpense.module.scss";
+import FormControl from "./FormControl";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
@@ -121,61 +122,43 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
   return (
     <form onSubmit={submitHandler}>
       <div className={styles["new-expense-controls"]}>
-        <div className={styles["new-expense-control"]}>
-          <label className={styles["new-expense-label"]} htmlFor="title">
-            Title
-          </label>
-          <input
-            id="title"
-            className={`${styles["new-expense-input"]} ${
-              titleState.isValid === false
-                ? styles["new-expense-input-error"]
-                : ""
-            }`}
-            type="text"
-            value={titleState.value}
-            onChange={titleChangeHandler}
-            onBlur={validateTitleHandler}
-          />
-        </div>
-        <div className={styles["new-expense-control"]}>
-          <label className={styles["new-expense-label"]} htmlFor="amount">
-            Amount
-          </label>
-          <input
-            id="amount"
-            className={`${styles["new-expense-input"]} ${
-              amountState.isValid === false
-                ? styles["new-expense-input-error"]
-                : ""
-            }`}
-            type="number"
-            min="0.01"
-            step="0.01"
-            value={amountState.value}
-            onChange={amountChangeHandler}
-            onBlur={validateAmountHandler}
-          />
-        </div>
-        <div className={styles["new-expense-control"]}>
-          <label className={styles["new-expense-label"]} htmlFor="date">
-            Date
-          </label>
-          <input
-            id="date"
-            className={`${styles["new-expense-input"]} ${
-              dateState.isValid === false
-                ? styles["new-expense-input-error"]
-                : ""
-            }`}
-            type="date"
-            min="2019-01-01"
-            max="2023-12-31"
-            value={dateState.value}
-            onChange={dateChangeHandler}
-            onBlur={validateDateHandler}
-          />
-        </div>
+        <FormControl
+          label="Title"
+          id="title"
+          className={
+            titleState.isValid === false ? styles["input-error"] : undefined
+          }
+          type="text"
+          value={titleState.value}
+          onChange={titleChangeHandler}
+          onBlur={validateTitleHandler}
+        />
+        <FormControl
+          label="Amount"
+          id="amount"
+          className={
+            amountState.isValid === false ? styles["input-error"] : undefined
+          }
+          type="number"
+          min="0.01"
+          step="0.01"
+          value={amountState.value}
+          onChange={amountChangeHandler}
+          onBlur={validateAmountHandler}
+        />
+        <FormControl
+          label="Date"
+          id="date"
+          className={
+            dateState.isValid === false ? styles["input-error"] : undefined
+          }
+          type="date"
+          min="2019-01-01"
+          max="2023-12-31"
+          value={dateState.value}
+          onChange={dateChangeHandler}
+          onBlur={validateDateHandler}
+        />
       </div>
       <div className={styles["new-expense-actions"]}>
         <Button type="button" onClick={onCancel}>

@@ -18,35 +18,6 @@
     }
   }
 
-  &-label {
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    display: block;
-
-    @media (min-width: 580px) {
-      font-size: 1rem;
-    }
-  }
-
-  &-input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 16rem;
-    height: 2.5rem;
-    max-width: 100%;
-
-    @media (min-width: 580px) {
-      width: 15rem;
-    }
-
-    &-error {
-      outline: 1px solid red;
-    }
-  }
-
   &-actions {
     display: flex;
     justify-content: center;
@@ -57,4 +28,8 @@
       justify-content: flex-end;
     }
   }
+}
+
+.input-error {
+  outline: 1px solid red;
 }
