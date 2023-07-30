@@ -1,3 +1,5 @@
+import styles from "./Button.module.scss";
+
 type ButtonProps = {
   id?: string;
   type: "button" | "submit" | "reset";
@@ -18,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       id={id}
-      className={className ? className + " btn" : "btn"}
+      className={className ? `${className} ${styles.btn}` : styles.btn}
       type={type || "button"}
       onClick={onClick}
       disabled={disabled}

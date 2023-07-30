@@ -23,7 +23,6 @@ const Modal: React.FC<ModalProps> = ({ title, text, onConfirm }) => {
       (event.target as HTMLElement).classList.contains(styles.modal) ||
       (event.target as HTMLButtonElement).id === ModalActions.CANCEL
     ) {
-      console.log(event.target);
       modalCtx.removeModal();
     }
   };

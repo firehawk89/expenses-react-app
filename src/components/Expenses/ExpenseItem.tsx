@@ -2,6 +2,7 @@ import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import deleteImg from "../../assets/img/trash.svg";
+import styles from "./Expenses.module.scss";
 
 type ExpenseItemProps = {
   id: string | undefined;
@@ -25,14 +26,14 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
   };
 
   return (
-    <Card className="expenses__item" tagName="li">
+    <Card className={styles["expenses-item"]} tagName="li">
       <ExpenseDate date={date} />
-      <div className="expenses__item-description">
-        <h2 className="expenses__item-title">{title}</h2>
-        <span className="expenses__item-price">${amount}</span>
+      <div className={styles["expenses-item-description"]}>
+        <h2 className={styles["expenses-item-title"]}>{title}</h2>
+        <span className={styles["expenses-item-price"]}>${amount}</span>
       </div>
       <Button
-        className="expenses__item-delete-btn"
+        className={styles["expenses-item-delete-btn"]}
         type="button"
         onClick={deleteHandler}
       >

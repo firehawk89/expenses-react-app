@@ -5,7 +5,7 @@
   max-width: 50rem;
   text-align: center;
 
-  &__controls {
+  &-controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,7 +18,7 @@
     }
   }
 
-  &__label {
+  &-label {
     font-weight: 700;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
@@ -29,7 +29,7 @@
     }
   }
 
-  &__input {
+  &-input {
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;
@@ -42,12 +42,12 @@
       width: 15rem;
     }
 
-    &.error {
+    &-error {
       outline: 1px solid red;
     }
   }
 
-  &__actions {
+  &-actions {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

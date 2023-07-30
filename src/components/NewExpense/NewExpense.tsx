@@ -4,6 +4,7 @@ import Button from "../UI/Button";
 import ExpenseForm from "./ExpenseForm";
 import useHttpRequest from "../../hooks/use-http-request";
 import Expense from "../../models/expense-model";
+import styles from "./NewExpense.module.scss";
 
 type NewExpenseProps = {
   onAddExpense: (expense: Expense) => void;
@@ -57,7 +58,7 @@ const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
   };
 
   return (
-    <Card className="new-expense">
+    <Card className={styles["new-expense"]}>
       {!isEditing ? (
         <Button type="button" onClick={startEditingHandler}>
           Add New Expense

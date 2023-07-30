@@ -1,3 +1,5 @@
+import styles from "./Chart.module.scss";
+
 type ChartBarProps = {
   total: number;
   value: number;
@@ -12,14 +14,14 @@ const ChartBar: React.FC<ChartBarProps> = ({ total, value, label }) => {
   }
 
   return (
-    <div className="chart__bar">
-      <div className="chart__bar-inner">
+    <div className={styles["chart-bar"]}>
+      <div className={styles["chart-bar-inner"]}>
         <div
-          className="chart__bar-fill"
+          className={styles["chart-bar-fill"]}
           style={{ height: barFillHeight }}
         ></div>
       </div>
-      <div className="chart__bar-label">{label}</div>
+      <div className={styles["chart-bar-label"]}>{label}</div>
     </div>
   );
 };

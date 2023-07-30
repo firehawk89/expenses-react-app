@@ -5,6 +5,7 @@ import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
 import Expense from "../../models/expense-model";
 import { ModalContext } from "../../store/modal-context";
+import styles from "./Expenses.module.scss";
 
 type ExpensesListProps = {
   items: Expense[];
@@ -56,12 +57,12 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
   };
 
   let expenseList = (
-    <h2 className="expenses__list-fallback">Found no expenses.</h2>
+    <h2 className={styles["expenses-list-fallback"]}>Found no expenses.</h2>
   );
 
   if (items.length > 0) {
     expenseList = (
-      <ul className="expenses__list">
+      <ul className={styles["expenses-list"]}>
         {items.map((expense) => (
           <ExpenseItem
             key={expense.id}

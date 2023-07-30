@@ -1,3 +1,5 @@
+import styles from "./Expenses.module.scss";
+
 type ExpensesFilterProps = {
   selected: string;
   onSelectedItem: (year: string) => void;
@@ -12,11 +14,13 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
   };
 
   return (
-    <div className="expenses__filter">
-      <div className="expenses__filter-control">
-        <label className="expenses__filter-label">Filter by year</label>
+    <div className={styles["expenses-filter"]}>
+      <div className={styles["expenses-filter-control"]}>
+        <label className={styles["expenses-filter-label"]}>
+          Filter by year
+        </label>
         <select
-          className="expenses__filter-select"
+          className={styles["expenses-filter-select"]}
           value={selected}
           onChange={changeYearHandler}
         >

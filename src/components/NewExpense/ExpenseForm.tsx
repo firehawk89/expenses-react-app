@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
+import styles from "./NewExpense.module.scss";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
@@ -119,15 +120,17 @@ const ExpenseForm: React.FC<ReactFormProps> = ({
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
-          <label className="new-expense__label" htmlFor="title">
+      <div className={styles["new-expense-controls"]}>
+        <div className={styles["new-expense-control"]}>
+          <label className={styles["new-expense-label"]} htmlFor="title">
             Title
           </label>
           <input
             id="title"
-            className={`new-expense__input${
-              titleState.isValid === false ? " error" : ""
+            className={`${styles["new-expense-input"]} ${
+              titleState.isValid === false
+                ? styles["new-expense-input-error"]
+                : ""
             }`}
             type="text"
             value={titleState.value}
@@ -135,14 +138,16 @@ const ExpenseForm: React.FC<ReactFormProps> = ({
             onBlur={validateTitleHandler}
           />
         </div>
-        <div className="new-expense__control">
-          <label className="new-expense__label" htmlFor="amount">
+        <div className={styles["new-expense-control"]}>
+          <label className={styles["new-expense-label"]} htmlFor="amount">
             Amount
           </label>
           <input
             id="amount"
-            className={`new-expense__input${
-              amountState.isValid === false ? " error" : ""
+            className={`${styles["new-expense-input"]} ${
+              amountState.isValid === false
+                ? styles["new-expense-input-error"]
+                : ""
             }`}
             type="number"
             min="0.01"
@@ -152,14 +157,16 @@ const ExpenseForm: React.FC<ReactFormProps> = ({
             onBlur={validateAmountHandler}
           />
         </div>
-        <div className="new-expense__control">
-          <label className="new-expense__label" htmlFor="date">
+        <div className={styles["new-expense-control"]}>
+          <label className={styles["new-expense-label"]} htmlFor="date">
             Date
           </label>
           <input
             id="date"
-            className={`new-expense__input${
-              dateState.isValid === false ? " error" : ""
+            className={`${styles["new-expense-input"]} ${
+              dateState.isValid === false
+                ? styles["new-expense-input-error"]
+                : ""
             }`}
             type="date"
             min="2019-01-01"
@@ -170,7 +177,7 @@ const ExpenseForm: React.FC<ReactFormProps> = ({
           />
         </div>
       </div>
-      <div className="new-expense__actions">
+      <div className={styles["new-expense-actions"]}>
         <Button type="button" onClick={onCancel}>
           Close
         </Button>

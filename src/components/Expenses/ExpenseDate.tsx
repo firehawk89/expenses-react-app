@@ -1,3 +1,5 @@
+import styles from "./Expenses.module.scss";
+
 type ExpenseDateProps = {
   date: Date;
 };
@@ -8,10 +10,10 @@ const ExpenseDate: React.FC<ExpenseDateProps> = ({ date }) => {
   const year = date.getFullYear();
 
   return (
-    <div className="expenses__item-date">
-      <span className="expenses__item-month">{month}</span>
-      <span className="expenses__item-year">{year}</span>
-      <span className="expenses__item-day">{day}</span>
+    <div className={styles["expenses-item-date"]}>
+      <span className={styles["expenses-item-month"]}>{month}</span>
+      <span className={styles["expenses-item-year"]}>{year}</span>
+      <span className={styles["expenses-item-day"]}>{day}</span>
     </div>
   );
 };
