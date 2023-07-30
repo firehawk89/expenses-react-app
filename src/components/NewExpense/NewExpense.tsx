@@ -11,7 +11,7 @@ type NewExpenseProps = {
 };
 
 const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const { isLoading, sendRequest: addExpense } = useHttpRequest();
 
   const createExpense = (
@@ -19,12 +19,12 @@ const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
     expenseData: { name: string }
   ) => {
     const generatedId = expenseData.name; // firebase-specific => "name" contains generated id
-    const createdExpense = {
-      id: generatedId,
-      title: enteredExpenseData.title,
-      amount: enteredExpenseData.amount,
-      date: enteredExpenseData.date,
-    };
+    const createdExpense = new Expense(
+      generatedId,
+      enteredExpenseData.title,
+      enteredExpenseData.amount,
+      enteredExpenseData.date
+    );
 
     onAddExpense(createdExpense);
     setIsEditing(false);
