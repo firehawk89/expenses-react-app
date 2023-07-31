@@ -23,7 +23,8 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
   }
 
   &-title {
@@ -44,7 +45,7 @@
   }
 
   &-delete-btn {
-    background-color: red;
+    background-color: var(--clr-danger);
 
     &:hover {
       background-color: #ce0000;

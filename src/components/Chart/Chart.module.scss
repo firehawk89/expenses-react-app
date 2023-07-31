@@ -26,7 +26,7 @@
     &-inner {
       height: 100%;
       width: 1.35rem;
-      border: 1px solid #313131;
+      border: 1px solid var(--clr-secondary);
       border-radius: 12px;
       background-color: #c3b4f3;
       overflow: hidden;
@@ -45,6 +45,7 @@
       font-weight: 600;
       font-size: 0.8rem;
       text-align: center;
+      color: var(--clr-dark);
     }
   }
 }

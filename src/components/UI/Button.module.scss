@@ -2,9 +2,10 @@
 
 .btn {
   padding: 1rem 2rem;
-  background-color: #40005d;
-  color: white;
+  background-color: var(--clr-accent);
+  color: var(--clr-light);
   border-radius: 12px;
+  transition: all 0.3s ease;
 
   @include media(768) {
     padding: 0.8rem 1.6rem;
@@ -13,7 +14,6 @@
   &:hover,
   &:active {
     background-color: #510674;
-    border-color: #510674;
   }
 
   &:disabled {
