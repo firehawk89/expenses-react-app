@@ -1,3 +1,13 @@
+:root {
+  --clr-light: #fff;
+  --clr-dark: #1f1f1f;
+  --clr-text: #fff;
+  --clr-primary: #1f1f1f;
+  --clr-secondary: #3f3f3f;
+  --clr-accent: #40005d;
+  --clr-danger: #dc0311;
+}
+
 *,
 *::before,
 *::after {
@@ -16,7 +26,8 @@ body {
   font-size: 16px;
   line-height: 1;
   font-weight: 400;
-  background-color: #3f3f3f;
+  background-color: var(--clr-secondary);
+  color: var(--clr-text);
 }
 
 img {
