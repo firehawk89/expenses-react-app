@@ -1,0 +1,25 @@
+@mixin media($width, $type: max) {
+  @if ($type == min) {
+    @media (#{$type}-width: #{$width + 0.02}px) {
+      @content;
+    }
+  } @else {
+    @media (#{$type}-width: #{$width}px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-cols($parent, $columns, $gap) {
+  #{$parent} {
+    gap: #{$gap};
+  }
+
+  #{$parent} > * {
+    flex: 0 1
+      calc(
+        calc(100% / #{$columns}) -
+          calc(#{$gap} / #{$columns} * calc(#{$columns} - 1))
+      );
+  }
+}

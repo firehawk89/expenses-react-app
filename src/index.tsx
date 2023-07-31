@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 
-import "./index.scss";
+import "./styles/index.scss";
 import App from "./App";
 import ModalContextProvider from "./store/modal-context";
 
