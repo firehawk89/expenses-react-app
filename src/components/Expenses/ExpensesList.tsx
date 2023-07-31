@@ -36,8 +36,8 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
   const modalTitle = "Delete expense";
 
   const removeExpense = (expenseId: string) => {
-    onDeleteItem(expenseId);
     modalCtx.removeModal();
+    onDeleteItem(expenseId);
   };
 
   const deleteItemHandler = async () => {
@@ -79,12 +79,14 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
 
   let content = expenseList;
 
-  if (error) {
-    content = <h2 className="expenses__list-fallback">{error}</h2>;
+  if (isLoading) {
+    content = (
+      <h2 className={styles["expenses-list-fallback"]}>Loading expenses...</h2>
+    );
   }
 
-  if (isLoading) {
-    content = <h2 className="expenses__list-fallback">Loading expenses...</h2>;
+  if (error) {
+    content = <h2 className={styles["expenses-list-fallback"]}>{error}</h2>;
   }
 
   return (
