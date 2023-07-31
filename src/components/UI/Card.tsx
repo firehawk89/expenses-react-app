@@ -1,7 +1,7 @@
 import styles from "./Card.module.scss";
 
 type CardProps = {
-  className: string;
+  className?: string;
   tagName?: keyof JSX.IntrinsicElements;
   children: React.ReactNode;
 };
@@ -11,7 +11,7 @@ const Card: React.FC<CardProps> = ({ className, tagName, children }) => {
 
   return (
     <CardTag
-      className={className ? `${className} ${styles.card}` : styles.card}
+      className={className ? `${styles.card} ${className}` : styles.card}
     >
       {children}
     </CardTag>
