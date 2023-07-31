@@ -8,8 +8,8 @@ type FormControlProps = {
   min?: string;
   max?: string;
   step?: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
 };
 
