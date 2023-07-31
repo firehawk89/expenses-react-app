@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Layout/Header";
+import Container from "../components/UI/Container";
 
 const RootLayout: React.FC = () => {
   return (
     <>
-      <Header />;
+      <Header />
       <main style={{ padding: "3rem 0" }}>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </main>
     </>
   );

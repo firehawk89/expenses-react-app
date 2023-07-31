@@ -3,7 +3,6 @@ import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
 import useHttpRequest from "../hooks/use-http-request";
 import Expense from "../models/expense-model";
-import Container from "../components/UI/Container";
 
 const HomePage: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -48,7 +47,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses
         isLoading={isLoading}
@@ -56,7 +55,7 @@ const HomePage: React.FC = () => {
         data={expenses}
         onDeleteItem={deleteItemHandler}
       />
-    </Container>
+    </>
   );
 };
 
