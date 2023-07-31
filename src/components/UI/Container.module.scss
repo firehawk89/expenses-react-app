@@ -1,11 +1,13 @@
+@import "../../styles/global";
+
 .container {
   padding-inline: 5rem;
 
-  @media (max-width: 992px) {
+  @include media(992) {
     padding-inline: 3rem;
   }
 
-  @media (max-width: 480px) {
+  @include media(576) {
     padding-inline: 1.5rem;
   }
 }

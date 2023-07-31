@@ -15,12 +15,7 @@
     padding: 0.5rem;
     border-radius: 6px;
     border: 1px solid #ccc;
-    width: 16rem;
     height: 2.5rem;
-    max-width: 100%;
-
-    @media (min-width: 580px) {
-      width: 15rem;
-    }
+    width: 100%;
   }
 }
