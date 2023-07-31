@@ -19,7 +19,7 @@ const ChartBar: React.FC<ChartBarProps> = ({ total, value, label }) => {
         <div
           className={styles["chart-bar-fill"]}
           style={{ height: barFillHeight }}
-        ></div>
+        />
       </div>
       <div className={styles["chart-bar-label"]}>{label}</div>
     </div>
