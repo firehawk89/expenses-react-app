@@ -1,7 +1,7 @@
 @import "../../styles/global";
 
 .new-expense {
-  background-color: #a892ee;
+  background-color: var(--clr-background);
   padding: 1rem;
   margin: 0 auto;
   max-width: 50rem;
