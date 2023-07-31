@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
 import styles from "./NewExpense.module.scss";
-import FormControl from "./FormControl";
+import FormControl from "../UI/FormControl";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
