@@ -4,7 +4,6 @@ import NewExpense from "../components/NewExpense/NewExpense";
 import useHttpRequest from "../hooks/use-http-request";
 import Expense from "../models/expense-model";
 import Container from "../components/UI/Container";
-import Header from "../components/Layout/Header";
 
 const HomePage: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
