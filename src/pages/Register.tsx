@@ -1,7 +1,7 @@
-import Container from "../components/UI/Container";
+import SignUpForm from "../components/Auth/SignUp";
 
 const RegisterPage: React.FC = () => {
-  return <Container>Sign Up</Container>;
+  return <SignUpForm />;
 };
 
 export default RegisterPage;
