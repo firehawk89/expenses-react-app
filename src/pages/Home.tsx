@@ -48,17 +48,15 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <>
-      <Container>
-        <NewExpense onAddExpense={addExpenseHandler} />
-        <Expenses
-          isLoading={isLoading}
-          error={error}
-          data={expenses}
-          onDeleteItem={deleteItemHandler}
-        />
-      </Container>
-    </>
+    <Container>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses
+        isLoading={isLoading}
+        error={error}
+        data={expenses}
+        onDeleteItem={deleteItemHandler}
+      />
+    </Container>
   );
 };
 
