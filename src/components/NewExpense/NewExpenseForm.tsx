@@ -1,46 +1,14 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
 import styles from "./NewExpense.module.scss";
 import FormControl from "../UI/FormControl";
+import useFormControl from "../../hooks/use-form-control";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
   onCancel: () => void;
   loading: boolean;
-};
-
-enum InputActionType {
-  INPUT = "USER_INPUT",
-  BLUR = "INPUT_BLUR",
-  CLEAR = "CLEAR_INPUT",
-}
-
-type InputState = {
-  value: string;
-};
-
-type InputAction = { type: InputActionType.INPUT; value: string };
-type BlurAction = { type: InputActionType.BLUR };
-type ClearAction = { type: InputActionType.CLEAR };
-type FormInputActions = InputAction | BlurAction | ClearAction;
-
-const initialState = {
-  value: "",
-  isValid: null,
-};
-
-const inputReducer = (state: InputState, action: FormInputActions) => {
-  switch (action.type) {
-    case InputActionType.INPUT:
-      return { value: action.value, isValid: checkInput(action.value) };
-    case InputActionType.BLUR:
-      return { value: state.value, isValid: checkInput(state.value) };
-    case InputActionType.CLEAR:
-      return initialState;
-    default:
-      return { value: "", isValid: false };
-  }
 };
 
 const checkInput = (value: string) => {
@@ -52,14 +20,31 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
   onCancel,
   loading,
 }) => {
-  const [titleState, dispatchTitle] = useReducer(inputReducer, initialState);
-  const [amountState, dispatchAmount] = useReducer(inputReducer, initialState);
-  const [dateState, dispatchDate] = useReducer(inputReducer, initialState);
-  const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
+  const {
+    value: titleValue,
+    isValid: titleIsValid,
+    inputChangeHandler: titleChangeHandler,
+    inputBlurHandler: titleBlurHandler,
+    inputClearHandler: titleClearHandler,
+  } = useFormControl(checkInput);
 
-  const { isValid: titleIsValid } = titleState;
-  const { isValid: amountIsValid } = amountState;
-  const { isValid: dateIsValid } = dateState;
+  const {
+    value: amountValue,
+    isValid: amountIsValid,
+    inputChangeHandler: amountChangeHandler,
+    inputBlurHandler: amountBlurHandler,
+    inputClearHandler: amountClearHandler,
+  } = useFormControl(checkInput);
+
+  const {
+    value: dateValue,
+    isValid: dateIsValid,
+    inputChangeHandler: dateChangeHandler,
+    inputBlurHandler: dateBlurHandler,
+    inputClearHandler: dateClearHandler,
+  } = useFormControl(checkInput);
+
+  const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
 
   useEffect(() => {
     const identifier = setTimeout(() => {
@@ -71,28 +56,10 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
     };
   }, [titleIsValid, amountIsValid, dateIsValid]);
 
-  const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatchTitle({ type: InputActionType.INPUT, value: event.target.value });
-  };
-
-  const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatchAmount({ type: InputActionType.INPUT, value: event.target.value });
-  };
-
-  const dateChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatchDate({ type: InputActionType.INPUT, value: event.target.value });
-  };
-
-  const validateTitleHandler = () => {
-    dispatchTitle({ type: InputActionType.BLUR });
-  };
-
-  const validateAmountHandler = () => {
-    dispatchAmount({ type: InputActionType.BLUR });
-  };
-
-  const validateDateHandler = () => {
-    dispatchDate({ type: InputActionType.BLUR });
+  const clearInputs = () => {
+    titleClearHandler();
+    amountClearHandler();
+    dateClearHandler();
   };
 
   const submitHandler = (event: React.FormEvent) => {
@@ -100,22 +67,20 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
 
     if (formIsValid) {
       const expenseData: Expense = {
-        title: titleState.value,
-        amount: +amountState.value,
-        date: new Date(dateState.value),
+        title: titleValue,
+        amount: +amountValue,
+        date: new Date(dateValue),
       };
 
       onSaveExpenseData(expenseData);
 
-      dispatchTitle({ type: InputActionType.CLEAR });
-      dispatchAmount({ type: InputActionType.CLEAR });
-      dispatchDate({ type: InputActionType.CLEAR });
+      clearInputs();
     } else if (!titleIsValid) {
-      dispatchTitle({ type: InputActionType.BLUR });
+      titleBlurHandler();
     } else if (!amountIsValid) {
-      dispatchAmount({ type: InputActionType.BLUR });
+      amountBlurHandler();
     } else {
-      dispatchDate({ type: InputActionType.BLUR });
+      dateBlurHandler();
     }
   };
 
@@ -125,39 +90,35 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
         <FormControl
           label="Title"
           id="title"
-          className={
-            titleState.isValid === false ? styles["input-error"] : undefined
-          }
+          className={titleIsValid === false ? styles["input-error"] : undefined}
           type="text"
-          value={titleState.value}
+          value={titleValue}
           onChange={titleChangeHandler}
-          onBlur={validateTitleHandler}
+          onBlur={titleBlurHandler}
         />
         <FormControl
           label="Amount"
           id="amount"
           className={
-            amountState.isValid === false ? styles["input-error"] : undefined
+            amountIsValid === false ? styles["input-error"] : undefined
           }
           type="number"
           min="0.01"
           step="0.01"
-          value={amountState.value}
+          value={amountValue}
           onChange={amountChangeHandler}
-          onBlur={validateAmountHandler}
+          onBlur={amountBlurHandler}
         />
         <FormControl
           label="Date"
           id="date"
-          className={
-            dateState.isValid === false ? styles["input-error"] : undefined
-          }
+          className={dateIsValid === false ? styles["input-error"] : undefined}
           type="date"
           min="2019-01-01"
           max="2023-12-31"
-          value={dateState.value}
+          value={dateValue}
           onChange={dateChangeHandler}
-          onBlur={validateDateHandler}
+          onBlur={dateBlurHandler}
         />
       </div>
       <div className={styles["new-expense-actions"]}>
