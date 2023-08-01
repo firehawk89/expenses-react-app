@@ -6,9 +6,14 @@ import styles from "./AuthForm.module.scss";
 type AuthFormProps = {
   children: React.ReactNode;
   formType: "login" | "register";
+  onSubmit: (event: React.FormEvent) => void;
 };
 
-const AuthForm: React.FC<AuthFormProps> = ({ children, formType }) => {
+const AuthForm: React.FC<AuthFormProps> = ({
+  children,
+  formType,
+  onSubmit,
+}) => {
   let additionalContent;
 
   if (formType === "login") {
@@ -28,7 +33,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ children, formType }) => {
 
   return (
     <Card className={styles.auth}>
-      <form className={styles["auth-form"]}>{children}</form>
+      <form className={styles["auth-form"]} onSubmit={onSubmit}>
+        {children}
+      </form>
       {additionalContent}
     </Card>
   );
