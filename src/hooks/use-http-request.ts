@@ -8,8 +8,8 @@ type RequestObj = {
 };
 
 const useHttpRequest = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
 
   const sendRequest = useCallback(
     async (requestConfig: RequestObj, manageData: (data: any) => void) => {
