@@ -90,33 +90,31 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
         <FormControl
           label="Title"
           id="title"
-          className={titleIsValid === false ? styles["input-error"] : undefined}
           type="text"
           value={titleValue}
+          hasError={titleIsValid !== null && !titleIsValid}
           onChange={titleChangeHandler}
           onBlur={titleBlurHandler}
         />
         <FormControl
           label="Amount"
           id="amount"
-          className={
-            amountIsValid === false ? styles["input-error"] : undefined
-          }
           type="number"
           min="0.01"
           step="0.01"
           value={amountValue}
+          hasError={amountIsValid !== null && !amountIsValid}
           onChange={amountChangeHandler}
           onBlur={amountBlurHandler}
         />
         <FormControl
           label="Date"
           id="date"
-          className={dateIsValid === false ? styles["input-error"] : undefined}
           type="date"
           min="2019-01-01"
           max="2023-12-31"
           value={dateValue}
+          hasError={dateIsValid !== null && !dateIsValid}
           onChange={dateChangeHandler}
           onBlur={dateBlurHandler}
         />
