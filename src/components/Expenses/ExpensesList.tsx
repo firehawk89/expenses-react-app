@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import ReactDOM from "react-dom";
+import { ModalContext } from "../../store/modal-context";
 import useHttpRequest from "../../hooks/use-http-request";
+import Expense from "../../models/expense-model";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
-import Expense from "../../models/expense-model";
-import { ModalContext } from "../../store/modal-context";
 import styles from "./Expenses.module.scss";
 
 type ExpensesListProps = {

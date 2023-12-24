@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Expenses from "../components/Expenses/Expenses";
-import NewExpense from "../components/NewExpense/NewExpense";
 import useHttpRequest from "../hooks/use-http-request";
 import Expense from "../models/expense-model";
+import Expenses from "../components/Expenses/Expenses";
+import NewExpense from "../components/NewExpense/NewExpense";
 
 const HomePage: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -50,9 +50,9 @@ const HomePage: React.FC = () => {
     <>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses
+        data={expenses}
         isLoading={isLoading}
         error={error}
-        data={expenses}
         onDeleteItem={deleteItemHandler}
       />
     </>

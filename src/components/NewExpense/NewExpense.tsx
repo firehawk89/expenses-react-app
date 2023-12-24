@@ -1,9 +1,9 @@
 import { useState } from "react";
+import useHttpRequest from "../../hooks/use-http-request";
+import Expense from "../../models/expense-model";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import NewExpenseForm from "./NewExpenseForm";
-import useHttpRequest from "../../hooks/use-http-request";
-import Expense from "../../models/expense-model";
 import styles from "./NewExpense.module.scss";
 
 type NewExpenseProps = {

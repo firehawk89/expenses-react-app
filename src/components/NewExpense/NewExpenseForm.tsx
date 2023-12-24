@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import useFormControl from "../../hooks/use-form-control";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
 import styles from "./NewExpense.module.scss";
 import FormControl from "../UI/FormControl";
-import useFormControl from "../../hooks/use-form-control";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
