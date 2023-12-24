@@ -1,9 +1,9 @@
 import { useState } from "react";
+import Expense from "../../models/expense-model";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
-import Expense from "../../models/expense-model";
 import styles from "./Expenses.module.scss";
 
 type ExpensesProps = {
