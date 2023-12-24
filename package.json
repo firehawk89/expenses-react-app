@@ -1,6 +1,7 @@
 {
   "homepage": "https://firehawk89.github.io/expenses-react-app/",
   "name": "react-complete-guide",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -28,14 +29,14 @@
     ]
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.5.0",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.14.2",
     "sass": "^1.58.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.17",
@@ -45,8 +46,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "gh-pages": "^5.0.0",
+    "gh-pages": "^6.1.1",
     "typescript": "^5.1.6",
-    "vite": "^4.3.9"
+    "vite": "^5.0.10"
   }
 }
