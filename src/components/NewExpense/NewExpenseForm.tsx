@@ -86,7 +86,9 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
 
   return (
     <form onSubmit={submitHandler}>
-      <div className={styles["new-expense-controls"]}>
+      <div
+        className={`mb-6 flex flex-wrap justify-stretch md:justify-center gap-6 text-left ${styles["new-expense-controls"]}`}
+      >
         <FormControl
           label="Title"
           id="title"
@@ -119,7 +121,7 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
           onBlur={dateBlurHandler}
         />
       </div>
-      <div className={styles["new-expense-actions"]}>
+      <div className="flex flex-wrap justify-center md:justify-end gap-4">
         <Button type="button" onClick={onCancel}>
           Close
         </Button>

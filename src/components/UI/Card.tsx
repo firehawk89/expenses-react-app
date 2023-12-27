@@ -1,5 +1,3 @@
-import styles from "./Card.module.scss";
-
 type CardProps = {
   className?: string;
   tagName?: keyof JSX.IntrinsicElements;
@@ -11,7 +9,11 @@ const Card: React.FC<CardProps> = ({ className, tagName, children }) => {
 
   return (
     <CardTag
-      className={className ? `${styles.card} ${className}` : styles.card}
+      className={
+        className
+          ? `overflow-hidden rounded-md shadow-card ${className}`
+          : "overflow-hidden rounded-md shadow-card"
+      }
     >
       {children}
     </CardTag>

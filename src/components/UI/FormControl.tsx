@@ -1,5 +1,3 @@
-import styles from "./FormControl.module.scss";
-
 type FormControlProps = {
   label: string;
   id: string;
@@ -31,17 +29,20 @@ const FormControl: React.FC<FormControlProps> = ({
 
   if (hasError) {
     inputClassName = className
-      ? `${styles["form-control-input"]} ${className} ${styles["input-error"]}`
-      : `${styles["form-control-input"]} ${styles["input-error"]}`;
+      ? `p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger ${className}`
+      : "p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger";
   } else {
     inputClassName = className
-      ? `${styles["form-control-input"]} ${className}`
-      : styles["form-control-input"];
+      ? `p-2 w-full h-10 text-dark rounded-md ${className}`
+      : "p-2 w-full h-10 text-dark rounded-md";
   }
 
   return (
-    <div className={styles["form-control"]}>
-      <label className={styles["form-control-label"]} htmlFor={id}>
+    <div>
+      <label
+        className="mb-2 block text-sm sm:text-base font-bold text-dark"
+        htmlFor={id}
+      >
         {label}
       </label>
       <input

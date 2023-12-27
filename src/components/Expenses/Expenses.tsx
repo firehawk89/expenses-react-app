@@ -4,7 +4,6 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
-import styles from "./Expenses.module.scss";
 
 type ExpensesProps = {
   data: Expense[];
@@ -35,7 +34,7 @@ const Expenses: React.FC<ExpensesProps> = ({
   }
 
   return (
-    <Card className={styles.expenses}>
+    <Card className="p-6 mt-8 mx-auto max-w-[50rem] bg-primary">
       <ExpensesFilter selected={year} onSelectedItem={onSelectedItemHandler} />
       <ExpensesChart expenses={filteredExpenses} />
       <ExpensesList

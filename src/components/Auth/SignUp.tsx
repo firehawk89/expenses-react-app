@@ -4,7 +4,6 @@ import User from "../../models/user-model";
 import AuthForm from "./AuthForm";
 import FormControl from "../UI/FormControl";
 import Button from "../UI/Button";
-import styles from "./AuthForm.module.scss";
 
 const checkInput = (value: string) => {
   return value.trim().length !== 0;
@@ -104,7 +103,7 @@ const SignUp: React.FC = () => {
         onChange={passwordChangeHandler}
         onBlur={passwordBlurHandler}
       />
-      <Button className={styles["auth-form-btn"]} type="submit">
+      <Button className="mt-2 mx-auto" type="submit">
         Sign Up
       </Button>
     </AuthForm>

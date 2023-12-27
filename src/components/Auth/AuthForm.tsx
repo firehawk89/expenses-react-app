@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../utils/constants";
 import Card from "../UI/Card";
-import styles from "./AuthForm.module.scss";
 
 type AuthFormProps = {
   children: React.ReactNode;
@@ -18,22 +17,27 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   if (formType === "login") {
     additionalContent = (
-      <p>
+      <p className="mt-5 mb-1 text-center text-primary">
         Don't have an account yet?{" "}
-        <Link to={`${baseUrl}register`}>Sign Up</Link>
+        <Link className="ml-1 text-accent" to={`${baseUrl}register`}>
+          Sign Up
+        </Link>
       </p>
     );
   } else {
     additionalContent = (
-      <p>
-        Already have an account? <Link to={`${baseUrl}login`}>Sign In</Link>
+      <p className="mt-5 mb-1 text-center text-primary">
+        Already have an account?{" "}
+        <Link className="ml-1 text-accent" to={`${baseUrl}login`}>
+          Sign In
+        </Link>
       </p>
     );
   }
 
   return (
-    <Card className={styles.auth}>
-      <form className={styles["auth-form"]} onSubmit={onSubmit}>
+    <Card className="p-6 mx-auto max-w-[25rem] bg-background">
+      <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         {children}
       </form>
       {additionalContent}
