@@ -5,7 +5,6 @@ import useHttpRequest from "../../hooks/use-http-request";
 import Expense from "../../models/expense-model";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
-import styles from "./Expenses.module.scss";
 
 type ExpensesListProps = {
   items: Expense[];
@@ -57,12 +56,14 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
   };
 
   let expenseList = (
-    <h2 className={styles["expenses-list-fallback"]}>Found no expenses.</h2>
+    <h2 className="mt-8 md:text-xl font-bold text-center text-light">
+      Found no expenses.
+    </h2>
   );
 
   if (items.length > 0) {
     expenseList = (
-      <ul className={styles["expenses-list"]}>
+      <ul className="list-none">
         {items.map((expense) => (
           <ExpenseItem
             key={expense.id}
@@ -81,12 +82,18 @@ const ExpensesList: React.FC<ExpensesListProps> = ({
 
   if (isLoading) {
     content = (
-      <h2 className={styles["expenses-list-fallback"]}>Loading expenses...</h2>
+      <h2 className="mt-8 md:text-xl font-bold text-center text-light">
+        Loading expenses...
+      </h2>
     );
   }
 
   if (error) {
-    content = <h2 className={styles["expenses-list-fallback"]}>{error}</h2>;
+    content = (
+      <h2 className="mt-8 md:text-xl font-bold text-center text-light">
+        {error}
+      </h2>
+    );
   }
 
   return (

@@ -1,17 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { baseUrl } from "../../utils/constants";
-import styles from "./Menu.module.scss";
 
 const Menu: React.FC = () => {
   return (
-    <ul className={styles.menu}>
+    <ul className="flex items-center gap-8">
       <li>
         <NavLink
           to={baseUrl}
           className={({ isActive }) =>
             isActive
-              ? `${styles["menu-link"]} ${styles["link-active"]}`
-              : styles["menu-link"]
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
+              : "text-light no-underline"
           }
           end
         >
@@ -23,8 +22,8 @@ const Menu: React.FC = () => {
           to={`${baseUrl}login`}
           className={({ isActive }) =>
             isActive
-              ? `${styles["menu-link"]} ${styles["link-active"]}`
-              : styles["menu-link"]
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
+              : "text-light no-underline"
           }
         >
           Log In
@@ -35,8 +34,8 @@ const Menu: React.FC = () => {
           to={`${baseUrl}register`}
           className={({ isActive }) =>
             isActive
-              ? `${styles["menu-link"]} ${styles["link-active"]}`
-              : styles["menu-link"]
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
+              : "text-light no-underline"
           }
         >
           Sign Up

@@ -4,7 +4,6 @@ import Expense from "../../models/expense-model";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import NewExpenseForm from "./NewExpenseForm";
-import styles from "./NewExpense.module.scss";
 
 type NewExpenseProps = {
   onAddExpense: (expense: Expense) => void;
@@ -58,7 +57,7 @@ const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
   };
 
   return (
-    <Card className={styles["new-expense"]}>
+    <Card className="p-4 mx-auto max-w-[50rem] text-center bg-background">
       {!isEditing ? (
         <Button type="button" onClick={startEditingHandler}>
           Add New Expense

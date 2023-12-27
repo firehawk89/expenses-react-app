@@ -1,13 +1,12 @@
 import Container from "../UI/Container";
 import Menu from "./Menu";
-import styles from "./Header.module.scss";
 import Brand from "../UI/Brand";
 
 const Header: React.FC = () => {
   return (
-    <header className={styles.header}>
+    <header className="py-4 bg-primary">
       <Container>
-        <div className={styles["header-body"]}>
+        <div className="flex items-center justify-between">
           <Brand />
           <nav>
             <Menu />

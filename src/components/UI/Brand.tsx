@@ -1,15 +1,10 @@
 import logo from "../../assets/img/logo.png";
-import styles from "./Brand.module.scss";
 
 const Brand: React.FC = () => {
   return (
-    <div className={styles.brand}>
-      <img
-        className={styles["brand-logo"]}
-        src={logo}
-        alt="Expenses React App Logo"
-      />
-      <span className={styles["brand-name"]}>Expense Tracker</span>
+    <div className="flex items-center gap-3">
+      <img className="w-12 h-12" src={logo} alt="Expenses React App Logo" />
+      <span className="block font-medium text-light">Expense Tracker</span>
     </div>
   );
 };

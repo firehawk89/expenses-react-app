@@ -9,7 +9,7 @@ const Chart: React.FC<ChartProps> = ({ dataPoints }) => {
   const total = dataPointValues.reduce((a, b) => a + b, 0);
 
   return (
-    <Card className={styles.chart}>
+    <Card className={`p-5 flex flex-wrap gap-y-4 bg-[#f8dfff] ${styles.chart}`}>
       {dataPoints.map((dataPoint) => (
         <ChartBar
           key={dataPoint.label}

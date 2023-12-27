@@ -1,8 +1,7 @@
 import { useContext } from "react";
+import { ModalContext } from "../../store/modal-context";
 import Card from "./Card";
 import Button from "./Button";
-import { ModalContext } from "../../store/modal-context";
-import styles from "./Modal.module.scss";
 
 enum ModalActions {
   CANCEL = "cancel-btn",
@@ -20,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ title, text, onConfirm }) => {
 
   const closeModalHandler = (event: React.SyntheticEvent<HTMLElement>) => {
     if (
-      (event.target as HTMLElement).classList.contains(styles.modal) ||
+      (event.target as HTMLElement).classList.contains("modal") ||
       (event.target as HTMLButtonElement).id === ModalActions.CANCEL
     ) {
       modalCtx.removeModal();
@@ -31,15 +30,15 @@ const Modal: React.FC<ModalProps> = ({ title, text, onConfirm }) => {
     <div
       className={
         modalCtx.isActive
-          ? `${styles.modal} ${styles["modal-active"]}`
-          : styles.modal
+          ? "modal fixed z-[5] top-0 left-0 w-full h-full flex items-center justify-center opacity-100 visible bg-dark bg-opacity-60 transition-all"
+          : "fixed -z-[1] top-0 left-0 w-full h-full flex items-center justify-center opacity-0 invisible bg-dark bg-opacity-60 transition-all"
       }
       onClick={closeModalHandler}
     >
-      <Card className={styles["modal-content"]}>
-        <h2 className={styles["modal-title"]}>{title}</h2>
-        <p className={styles["modal-text"]}>{text}</p>
-        <div className={styles["modal-actions"]}>
+      <Card className="p-8 flex flex-col text-dark bg-light">
+        <h2 className="mb-5 text-xl font-semibold text-center">{title}</h2>
+        <p className="mb-8">{text}</p>
+        <div className="flex justify-center gap-4">
           <Button
             id={ModalActions.CANCEL}
             type="button"
@@ -49,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ title, text, onConfirm }) => {
           </Button>
           <Button
             id={ModalActions.ACTION}
-            className={styles["modal-delete-btn"]}
+            className="bg-danger hover:bg-[#ce0000]"
             type="button"
             onClick={onConfirm}
           >
