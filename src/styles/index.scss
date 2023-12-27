@@ -1,51 +1,8 @@
-:root {
-  --clr-light: #fff;
-  --clr-dark: #1f1f1f;
-  --clr-text: #fff;
-  --clr-primary: #1f1f1f;
-  --clr-secondary: #3f3f3f;
-  --clr-background: #a892ee;
-  --clr-accent: #40005d;
-  --clr-danger: #dc0311;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  line-height: 1;
-  font-weight: 400;
-  background-color: var(--clr-secondary);
-  color: var(--clr-text);
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  color: inherit;
+  @apply bg-secondary text-light;
 }
