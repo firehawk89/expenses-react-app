@@ -1,12 +1,14 @@
 import { FC } from "react";
+import ChartItem from "../../types/ChartItem";
 
 type ChartBarProps = {
+  data: ChartItem;
   total: number;
-  value: number;
-  label: string;
 };
 
-const ChartBar: FC<ChartBarProps> = ({ total, value, label }) => {
+const ChartBar: FC<ChartBarProps> = ({ data, total }) => {
+  const { label, value } = data;
+
   let barFillHeight = "0%";
 
   if (total > 0) {
