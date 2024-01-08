@@ -1,3 +1,4 @@
+import { FC } from "react";
 import ExpenseItemDate from "./ExpenseItemDate";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -11,7 +12,7 @@ type ExpenseItemProps = {
   onDelete: (id: string, title: string) => void;
 };
 
-const ExpenseItem: React.FC<ExpenseItemProps> = ({
+const ExpenseItem: FC<ExpenseItemProps> = ({
   id,
   title,
   amount,

@@ -1,13 +1,15 @@
+import { FC, MouseEvent, ReactNode } from "react";
+
 type ButtonProps = {
   id?: string;
   type: "button" | "submit" | "reset";
   className?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   id,
   className,
   type,

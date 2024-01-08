@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import useHttpRequest from "../../hooks/use-http-request";
 import Expense from "../../models/expense-model";
 import Card from "../UI/Card";
@@ -9,7 +9,7 @@ type NewExpenseProps = {
   onAddExpense: (expense: Expense) => void;
 };
 
-const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
+const NewExpense: FC<NewExpenseProps> = ({ onAddExpense }) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const { isLoading, sendRequest: addExpense } = useHttpRequest();
 

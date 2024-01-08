@@ -1,8 +1,9 @@
+import { FC } from "react";
 import Container from "../UI/Container";
 import Menu from "./Menu";
 import Brand from "../UI/Brand";
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   return (
     <header className="py-4 bg-primary">
       <Container>

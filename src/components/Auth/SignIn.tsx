@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import useFormControl from "../../hooks/use-form-control";
 import User from "../../models/user-model";
 import AuthForm from "./AuthForm";
@@ -9,7 +9,7 @@ const checkInput = (value: string) => {
   return value.trim().length !== 0;
 };
 
-const SignIn: React.FC = () => {
+const SignIn: FC = () => {
   const {
     value: usernameValue,
     isValid: usernameIsValid,

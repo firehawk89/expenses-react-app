@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../../store/modal-context";
 import useHttpRequest from "../../hooks/use-http-request";
@@ -13,7 +13,7 @@ type ExpensesListProps = {
   error: string | null;
 };
 
-const ExpensesList: React.FC<ExpensesListProps> = ({
+const ExpensesList: FC<ExpensesListProps> = ({
   items,
   onDeleteItem,
   isLoading,

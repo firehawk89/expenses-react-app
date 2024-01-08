@@ -1,3 +1,5 @@
+import { ChangeEvent, FC } from "react";
+
 type FormControlProps = {
   label: string;
   id: string;
@@ -8,11 +10,11 @@ type FormControlProps = {
   step?: string;
   value?: string;
   hasError?: boolean | null;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: () => void;
 };
 
-const FormControl: React.FC<FormControlProps> = ({
+const FormControl: FC<FormControlProps> = ({
   label,
   id,
   className,

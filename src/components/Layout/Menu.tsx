@@ -1,7 +1,8 @@
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { baseUrl } from "../../utils/constants";
 
-const Menu: React.FC = () => {
+const Menu: FC = () => {
   return (
     <ul className="flex items-center gap-8">
       <li>

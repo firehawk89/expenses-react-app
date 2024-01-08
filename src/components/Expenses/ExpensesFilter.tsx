@@ -1,9 +1,11 @@
+import { FC } from "react";
+
 type ExpensesFilterProps = {
   selected: string;
   onSelectedItem: (year: string) => void;
 };
 
-const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
+const ExpensesFilter: FC<ExpensesFilterProps> = ({
   selected,
   onSelectedItem,
 }) => {

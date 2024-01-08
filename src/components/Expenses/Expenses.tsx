@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import Expense from "../../models/expense-model";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
@@ -12,7 +12,7 @@ type ExpensesProps = {
   error: string | null;
 };
 
-const Expenses: React.FC<ExpensesProps> = ({
+const Expenses: FC<ExpensesProps> = ({
   data,
   onDeleteItem,
   isLoading,

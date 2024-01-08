@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import useFormControl from "../../hooks/use-form-control";
 import Expense from "../../models/expense-model";
 import Button from "../UI/Button";
-import styles from "./NewExpense.module.scss";
 import FormControl from "../UI/FormControl";
+import styles from "./NewExpense.module.scss";
 
 type ReactFormProps = {
   onSaveExpenseData: (data: Expense) => void;
@@ -15,7 +15,7 @@ const checkInput = (value: string) => {
   return value.trim().length !== 0;
 };
 
-const NewExpenseForm: React.FC<ReactFormProps> = ({
+const NewExpenseForm: FC<ReactFormProps> = ({
   onSaveExpenseData,
   onCancel,
   loading,

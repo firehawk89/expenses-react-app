@@ -1,8 +1,10 @@
+import { FC } from "react";
+
 type ExpenseDateProps = {
   date: Date;
 };
 
-const ExpenseItemDate: React.FC<ExpenseDateProps> = ({ date }) => {
+const ExpenseItemDate: FC<ExpenseDateProps> = ({ date }) => {
   const month = date.toLocaleString("en-US", { month: "long" });
   const day = date.toLocaleString("en-US", { day: "2-digit" });
   const year = date.getFullYear();

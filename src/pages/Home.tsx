@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import useHttpRequest from "../hooks/use-http-request";
 import Expense from "../models/expense-model";
 import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest();
 

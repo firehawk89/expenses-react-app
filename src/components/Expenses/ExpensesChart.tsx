@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Expense from "../../models/expense-model";
 import Chart from "../Chart/Chart";
 
@@ -20,7 +21,7 @@ const chartDataPoints = [
   { label: "Dec", value: 0 },
 ];
 
-const ExpensesChart: React.FC<ExpensesChartProps> = ({ expenses }) => {
+const ExpensesChart: FC<ExpensesChartProps> = ({ expenses }) => {
   for (const expense of expenses) {
     const expenseMonth = expense.date.getMonth();
     chartDataPoints[expenseMonth].value += expense.amount;

@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { baseUrl } from "./utils/constants";
 import RootLayout from "./pages/Root";
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App: React.FC = () => {
+const App: FC = () => {
   return <RouterProvider router={router} />;
 };
 

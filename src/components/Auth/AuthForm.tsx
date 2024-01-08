@@ -1,18 +1,15 @@
+import { FC, FormEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../utils/constants";
 import Card from "../UI/Card";
 
 type AuthFormProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   formType: "login" | "register";
-  onSubmit: (event: React.FormEvent) => void;
+  onSubmit: (event: FormEvent) => void;
 };
 
-const AuthForm: React.FC<AuthFormProps> = ({
-  children,
-  formType,
-  onSubmit,
-}) => {
+const AuthForm: FC<AuthFormProps> = ({ children, formType, onSubmit }) => {
   let additionalContent;
 
   if (formType === "login") {

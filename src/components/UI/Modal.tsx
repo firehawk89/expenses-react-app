@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { ModalContext } from "../../store/modal-context";
 import Card from "./Card";
 import Button from "./Button";
@@ -14,7 +14,7 @@ type ModalProps = {
   onConfirm: () => void;
 };
 
-const Modal: React.FC<ModalProps> = ({ title, text, onConfirm }) => {
+const Modal: FC<ModalProps> = ({ title, text, onConfirm }) => {
   const modalCtx = useContext(ModalContext);
 
   const closeModalHandler = (event: React.SyntheticEvent<HTMLElement>) => {
