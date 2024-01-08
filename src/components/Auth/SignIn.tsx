@@ -13,17 +13,17 @@ const SignIn: FC = () => {
   const {
     value: usernameValue,
     isValid: usernameIsValid,
-    inputChangeHandler: usernameChangeHandler,
-    inputBlurHandler: usernameBlurHandler,
-    inputClearHandler: usernameClearHandler,
+    handleChange: handleUsernameChange,
+    handleBlur: handleUsernameBlur,
+    handleClear: handleUsernameClear,
   } = useFormControl(checkInput);
 
   const {
     value: passwordValue,
     isValid: passwordIsValid,
-    inputChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    inputClearHandler: passwordClearHandler,
+    handleChange: handlePasswordChange,
+    handleBlur: handlePasswordBlur,
+    handleClear: handlePasswordClear,
   } = useFormControl(checkInput);
 
   const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
@@ -39,8 +39,8 @@ const SignIn: FC = () => {
   }, [usernameIsValid, passwordIsValid]);
 
   const clearInputs = () => {
-    usernameClearHandler();
-    passwordClearHandler();
+    handleUsernameClear();
+    handlePasswordClear();
   };
 
   const submitHandler = (event: React.FormEvent) => {
@@ -48,6 +48,7 @@ const SignIn: FC = () => {
 
     if (formIsValid) {
       const userData: User = {
+        email: "test",
         username: usernameValue,
         password: passwordValue,
       };
@@ -56,9 +57,9 @@ const SignIn: FC = () => {
 
       clearInputs();
     } else if (!usernameIsValid) {
-      usernameBlurHandler();
+      handleUsernameBlur();
     } else {
-      passwordBlurHandler();
+      handleUsernameBlur();
     }
   };
 
@@ -70,8 +71,8 @@ const SignIn: FC = () => {
         type="text"
         value={usernameValue}
         hasError={usernameIsValid !== null && !usernameIsValid}
-        onChange={usernameChangeHandler}
-        onBlur={usernameBlurHandler}
+        onChange={handleUsernameChange}
+        onBlur={handleUsernameBlur}
       />
       <FormControl
         label="Password"
@@ -79,8 +80,8 @@ const SignIn: FC = () => {
         type="password"
         value={passwordValue}
         hasError={passwordIsValid !== null && !passwordIsValid}
-        onChange={passwordChangeHandler}
-        onBlur={passwordBlurHandler}
+        onChange={handlePasswordChange}
+        onBlur={handlePasswordBlur}
       />
       <Button className="mt-2 mx-auto" type="submit">
         Sign In
