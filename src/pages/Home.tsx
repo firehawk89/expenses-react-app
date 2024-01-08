@@ -1,5 +1,6 @@
 import { useState, useEffect, FC } from "react";
 import useHttpRequest from "../hooks/use-http-request";
+import { dbUrl } from "../utils/constants";
 import Expense from "../types/models/expense-model";
 import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
@@ -28,7 +29,7 @@ const HomePage: FC = () => {
 
     fetchExpenses(
       {
-        url: `${import.meta.env.VITE_DATABASE_URL}/expenses.json`,
+        url: `${dbUrl}/expenses.json`,
       },
       updateExpenses
     );
