@@ -4,6 +4,7 @@ import Expense from "../../types/models/expense-model";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import NewExpenseForm from "./NewExpenseForm";
+import { dbUrl } from "../../utils/constants";
 
 type NewExpenseProps = {
   onAddExpense: (expense: Expense) => void;
@@ -29,10 +30,10 @@ const NewExpense: FC<NewExpenseProps> = ({ onAddExpense }) => {
     setIsEditing(false);
   };
 
-  const onSaveExpenseDataHandler = async (enteredExpenseData: Expense) => {
+  const saveExpenseData = async (enteredExpenseData: Expense) => {
     addExpense(
       {
-        url: `${import.meta.env.VITE_DATABASE_URL}/expenses.json`,
+        url: `${dbUrl}/expenses.json`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,25 +49,25 @@ const NewExpense: FC<NewExpenseProps> = ({ onAddExpense }) => {
     );
   };
 
-  const startEditingHandler = () => {
+  const startEditing = () => {
     setIsEditing(true);
   };
 
-  const stopEditingHandler = () => {
+  const stopEditing = () => {
     setIsEditing(false);
   };
 
   return (
     <Card className="p-4 mx-auto max-w-[50rem] text-center bg-background">
       {!isEditing ? (
-        <Button type="button" onClick={startEditingHandler}>
+        <Button type="button" onClick={startEditing}>
           Add New Expense
         </Button>
       ) : (
         <NewExpenseForm
-          loading={isLoading}
-          onSaveExpenseData={onSaveExpenseDataHandler}
-          onCancel={stopEditingHandler}
+          isLoading={isLoading}
+          onSubmit={saveExpenseData}
+          onCancel={stopEditing}
         />
       )}
     </Card>
