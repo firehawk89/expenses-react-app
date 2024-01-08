@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 
 type ExpensesFilterProps = {
   selected: string;
@@ -9,7 +9,7 @@ const ExpensesFilter: FC<ExpensesFilterProps> = ({
   selected,
   onSelectedItem,
 }) => {
-  const changeYearHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onSelectedItem(event.target.value);
   };
 
@@ -20,7 +20,7 @@ const ExpensesFilter: FC<ExpensesFilterProps> = ({
         <select
           className="py-2 px-6 font-bold rounded-md text-dark"
           value={selected}
-          onChange={changeYearHandler}
+          onChange={handleYearChange}
         >
           <option value="none">All</option>
           <option value="2023">2023</option>
