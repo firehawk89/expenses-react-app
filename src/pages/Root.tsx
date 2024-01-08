@@ -7,7 +7,7 @@ const RootLayout: FC = () => {
   return (
     <>
       <Header />
-      <main style={{ padding: "3rem 0" }}>
+      <main className="py-12">
         <Container>
           <Outlet />
         </Container>
