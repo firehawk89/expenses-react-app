@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Expense from "../../models/expense-model";
+import Expense from "../../types/models/expense-model";
 import Chart from "../Chart/Chart";
 
 type ExpensesChartProps = {

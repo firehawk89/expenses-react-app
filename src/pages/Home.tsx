@@ -1,6 +1,6 @@
 import { useState, useEffect, FC } from "react";
 import useHttpRequest from "../hooks/use-http-request";
-import Expense from "../models/expense-model";
+import Expense from "../types/models/expense-model";
 import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
 
