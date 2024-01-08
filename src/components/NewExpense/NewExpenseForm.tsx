@@ -1,47 +1,47 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import useFormControl from "../../hooks/use-form-control";
-import Expense from "../../models/expense-model";
+import Expense from "../../types/models/expense-model";
 import Button from "../UI/Button";
-import styles from "./NewExpense.module.scss";
 import FormControl from "../UI/FormControl";
+import styles from "./NewExpense.module.scss";
 
 type ReactFormProps = {
-  onSaveExpenseData: (data: Expense) => void;
+  isLoading: boolean;
+  onSubmit: (data: Expense) => void;
   onCancel: () => void;
-  loading: boolean;
 };
 
 const checkInput = (value: string) => {
   return value.trim().length !== 0;
 };
 
-const NewExpenseForm: React.FC<ReactFormProps> = ({
-  onSaveExpenseData,
+const NewExpenseForm: FC<ReactFormProps> = ({
+  isLoading,
+  onSubmit,
   onCancel,
-  loading,
 }) => {
   const {
     value: titleValue,
     isValid: titleIsValid,
-    inputChangeHandler: titleChangeHandler,
-    inputBlurHandler: titleBlurHandler,
-    inputClearHandler: titleClearHandler,
+    handleChange: handleTitleChange,
+    handleBlur: handleTitleBlur,
+    handleClear: handleTitleClear,
   } = useFormControl(checkInput);
 
   const {
     value: amountValue,
     isValid: amountIsValid,
-    inputChangeHandler: amountChangeHandler,
-    inputBlurHandler: amountBlurHandler,
-    inputClearHandler: amountClearHandler,
+    handleChange: handleAmountChange,
+    handleBlur: handleAmountBlur,
+    handleClear: handleAmountClear,
   } = useFormControl(checkInput);
 
   const {
     value: dateValue,
     isValid: dateIsValid,
-    inputChangeHandler: dateChangeHandler,
-    inputBlurHandler: dateBlurHandler,
-    inputClearHandler: dateClearHandler,
+    handleChange: handleDateChange,
+    handleBlur: handleDateBlur,
+    handleClear: handleDateClear,
   } = useFormControl(checkInput);
 
   const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
@@ -57,12 +57,12 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
   }, [titleIsValid, amountIsValid, dateIsValid]);
 
   const clearInputs = () => {
-    titleClearHandler();
-    amountClearHandler();
-    dateClearHandler();
+    handleTitleClear();
+    handleAmountClear();
+    handleDateClear();
   };
 
-  const submitHandler = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (formIsValid) {
@@ -72,20 +72,20 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
         date: new Date(dateValue),
       };
 
-      onSaveExpenseData(expenseData);
+      onSubmit(expenseData);
 
       clearInputs();
     } else if (!titleIsValid) {
-      titleBlurHandler();
+      handleTitleBlur();
     } else if (!amountIsValid) {
-      amountBlurHandler();
+      handleAmountBlur();
     } else {
-      dateBlurHandler();
+      handleDateBlur();
     }
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit}>
       <div
         className={`mb-6 flex flex-wrap justify-stretch md:justify-center gap-6 text-left ${styles["new-expense-controls"]}`}
       >
@@ -95,8 +95,8 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
           type="text"
           value={titleValue}
           hasError={titleIsValid !== null && !titleIsValid}
-          onChange={titleChangeHandler}
-          onBlur={titleBlurHandler}
+          onChange={handleTitleChange}
+          onBlur={handleTitleBlur}
         />
         <FormControl
           label="Amount"
@@ -106,8 +106,8 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
           step="0.01"
           value={amountValue}
           hasError={amountIsValid !== null && !amountIsValid}
-          onChange={amountChangeHandler}
-          onBlur={amountBlurHandler}
+          onChange={handleAmountChange}
+          onBlur={handleAmountBlur}
         />
         <FormControl
           label="Date"
@@ -117,15 +117,17 @@ const NewExpenseForm: React.FC<ReactFormProps> = ({
           max="2023-12-31"
           value={dateValue}
           hasError={dateIsValid !== null && !dateIsValid}
-          onChange={dateChangeHandler}
-          onBlur={dateBlurHandler}
+          onChange={handleDateChange}
+          onBlur={handleDateBlur}
         />
       </div>
       <div className="flex flex-wrap justify-center md:justify-end gap-4">
         <Button type="button" onClick={onCancel}>
           Close
         </Button>
-        <Button type="submit">{loading ? "Sending..." : "Add Expense"}</Button>
+        <Button type="submit">
+          {isLoading ? "Sending..." : "Add Expense"}
+        </Button>
       </div>
     </form>
   );

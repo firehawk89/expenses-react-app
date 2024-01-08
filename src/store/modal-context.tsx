@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { FC, createContext, useState } from "react";
 
 type ModalContextObj = {
   isActive: boolean;
@@ -12,7 +12,7 @@ export const ModalContext = createContext<ModalContextObj>({
   removeModal: () => {},
 });
 
-const ModalContextProvider: React.FC<{ children: React.ReactNode }> = ({
+const ModalContextProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isActive, setIsActive] = useState<boolean>(false);

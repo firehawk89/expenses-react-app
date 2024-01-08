@@ -1,19 +1,21 @@
+import { FC, MouseEvent, ReactNode } from "react";
+
 type ButtonProps = {
+  className?: string;
+  children?: ReactNode;
   id?: string;
   type: "button" | "submit" | "reset";
-  className?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
-  children?: React.ReactNode;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Button: React.FC<ButtonProps> = ({
-  id,
+const Button: FC<ButtonProps> = ({
   className,
+  children,
+  id,
   type,
   disabled,
   onClick,
-  children,
 }) => {
   return (
     <button
@@ -24,8 +26,8 @@ const Button: React.FC<ButtonProps> = ({
           : "py-3.5 px-7 md:py-4 md:px-8 w-fit rounded-xl text-light bg-accent hover:bg-accent-light active:bg-accent-light disabled:bg-opacity-80 transition-all"
       }
       type={type || "button"}
-      onClick={onClick}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
