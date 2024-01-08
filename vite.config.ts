@@ -1,14 +1,14 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 /* import eslint from "vite-plugin-eslint"; */
 
 export default defineConfig({
   plugins: [react() /*  eslint() */],
-  base: "/expenses-react-app/",
+  base: '/expenses-react-app/',
   server: {
     open: true,
   },
   build: {
-    outDir: "build",
+    outDir: 'build',
   },
-});
+})

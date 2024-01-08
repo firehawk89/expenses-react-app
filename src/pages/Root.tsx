@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Outlet } from "react-router-dom";
-import Header from "../components/Layout/Header";
-import Container from "../components/UI/Container";
+import { FC } from 'react'
+import { Outlet } from 'react-router-dom'
+import Header from '../components/Layout/Header'
+import Container from '../components/UI/Container'
 
 const RootLayout: FC = () => {
   return (
@@ -13,7 +13,7 @@ const RootLayout: FC = () => {
         </Container>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

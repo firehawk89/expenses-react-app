@@ -1,35 +1,35 @@
-import { FC, FormEvent, ReactNode } from "react";
-import { Link } from "react-router-dom";
-import { baseUrl } from "../../utils/constants";
-import Card from "../UI/Card";
+import { FC, FormEvent, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import { baseUrl } from '../../utils/constants'
+import Card from '../UI/Card'
 
 type AuthFormProps = {
-  children: ReactNode;
-  formType: "login" | "register";
-  onSubmit: (event: FormEvent) => void;
-};
+  children: ReactNode
+  formType: 'login' | 'register'
+  onSubmit: (event: FormEvent) => void
+}
 
 const AuthForm: FC<AuthFormProps> = ({ children, formType, onSubmit }) => {
-  let additionalContent;
+  let additionalContent
 
-  if (formType === "login") {
+  if (formType === 'login') {
     additionalContent = (
       <p className="mt-5 mb-1 text-center text-primary">
-        Don't have an account yet?{" "}
+        Don't have an account yet?{' '}
         <Link className="ml-1 text-accent" to={`${baseUrl}register`}>
           Sign Up
         </Link>
       </p>
-    );
+    )
   } else {
     additionalContent = (
       <p className="mt-5 mb-1 text-center text-primary">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <Link className="ml-1 text-accent" to={`${baseUrl}login`}>
           Sign In
         </Link>
       </p>
-    );
+    )
   }
 
   return (
@@ -39,7 +39,7 @@ const AuthForm: FC<AuthFormProps> = ({ children, formType, onSubmit }) => {
       </form>
       {additionalContent}
     </Card>
-  );
-};
+  )
+}
 
-export default AuthForm;
+export default AuthForm

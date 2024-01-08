@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { baseUrl } from "../../utils/constants";
+import { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+import { baseUrl } from '../../utils/constants'
 
 const Menu: FC = () => {
   return (
@@ -11,7 +11,7 @@ const Menu: FC = () => {
           className={({ isActive }) =>
             isActive
               ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : "text-light no-underline"
+              : 'text-light no-underline'
           }
           end
         >
@@ -24,7 +24,7 @@ const Menu: FC = () => {
           className={({ isActive }) =>
             isActive
               ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : "text-light no-underline"
+              : 'text-light no-underline'
           }
         >
           Log In
@@ -36,14 +36,14 @@ const Menu: FC = () => {
           className={({ isActive }) =>
             isActive
               ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : "text-light no-underline"
+              : 'text-light no-underline'
           }
         >
           Sign Up
         </NavLink>
       </li>
     </ul>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

@@ -1,13 +1,13 @@
-import { useState, useEffect, FC } from "react";
-import useFormControl from "../../hooks/use-form-control";
-import User from "../../types/models/user-model";
-import AuthForm from "./AuthForm";
-import FormControl from "../UI/FormControl";
-import Button from "../UI/Button";
+import { useState, useEffect, FC } from 'react'
+import useFormControl from '../../hooks/use-form-control'
+import User from '../../types/models/user-model'
+import AuthForm from './AuthForm'
+import FormControl from '../UI/FormControl'
+import Button from '../UI/Button'
 
 const checkInput = (value: string) => {
-  return value.trim().length !== 0;
-};
+  return value.trim().length !== 0
+}
 
 const SignIn: FC = () => {
   const {
@@ -16,7 +16,7 @@ const SignIn: FC = () => {
     handleChange: handleUsernameChange,
     handleBlur: handleUsernameBlur,
     handleClear: handleUsernameClear,
-  } = useFormControl(checkInput);
+  } = useFormControl(checkInput)
 
   const {
     value: passwordValue,
@@ -24,44 +24,44 @@ const SignIn: FC = () => {
     handleChange: handlePasswordChange,
     handleBlur: handlePasswordBlur,
     handleClear: handlePasswordClear,
-  } = useFormControl(checkInput);
+  } = useFormControl(checkInput)
 
-  const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
+  const [formIsValid, setFormIsValid] = useState<boolean | null>(false)
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      setFormIsValid(usernameIsValid && passwordIsValid);
-    }, 250);
+      setFormIsValid(usernameIsValid && passwordIsValid)
+    }, 250)
 
     return () => {
-      clearTimeout(identifier);
-    };
-  }, [usernameIsValid, passwordIsValid]);
+      clearTimeout(identifier)
+    }
+  }, [usernameIsValid, passwordIsValid])
 
   const clearInputs = () => {
-    handleUsernameClear();
-    handlePasswordClear();
-  };
+    handleUsernameClear()
+    handlePasswordClear()
+  }
 
   const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (formIsValid) {
       const userData: User = {
-        email: "test",
+        email: 'test',
         username: usernameValue,
         password: passwordValue,
-      };
+      }
 
-      console.log(userData);
+      console.log(userData)
 
-      clearInputs();
+      clearInputs()
     } else if (!usernameIsValid) {
-      handleUsernameBlur();
+      handleUsernameBlur()
     } else {
-      handleUsernameBlur();
+      handleUsernameBlur()
     }
-  };
+  }
 
   return (
     <AuthForm formType="login" onSubmit={submitHandler}>
@@ -87,7 +87,7 @@ const SignIn: FC = () => {
         Sign In
       </Button>
     </AuthForm>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

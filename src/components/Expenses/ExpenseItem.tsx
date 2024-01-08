@@ -1,21 +1,21 @@
-import { FC } from "react";
-import Expense from "../../types/models/expense-model";
-import ExpenseItemDate from "./ExpenseItemDate";
-import Card from "../UI/Card";
-import Button from "../UI/Button";
-import deleteImg from "../../assets/img/trash.svg";
+import { FC } from 'react'
+import Expense from '../../types/models/expense-model'
+import ExpenseItemDate from './ExpenseItemDate'
+import Card from '../UI/Card'
+import Button from '../UI/Button'
+import deleteImg from '../../assets/img/trash.svg'
 
 type ExpenseItemProps = {
-  data: Expense;
-  onDelete: (id: string, title: string) => void;
-};
+  data: Expense
+  onDelete: (id: string, title: string) => void
+}
 
 const ExpenseItem: FC<ExpenseItemProps> = ({ data, onDelete }) => {
-  const { id, title, amount, date } = data;
+  const { id, title, amount, date } = data
 
   const handleExpenseDelete = () => {
-    onDelete(id!, title);
-  };
+    onDelete(id!, title)
+  }
 
   return (
     <Card
@@ -39,7 +39,7 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ data, onDelete }) => {
         <img className="w-4 h-4 md:w-5 md:h-5" src={deleteImg} alt="Delete" />
       </Button>
     </Card>
-  );
-};
+  )
+}
 
-export default ExpenseItem;
+export default ExpenseItem

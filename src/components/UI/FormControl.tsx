@@ -1,18 +1,18 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC } from 'react'
 
 type FormControlProps = {
-  label: string;
-  id: string;
-  className?: string;
-  type: string;
-  min?: string;
-  max?: string;
-  step?: string;
-  value?: string;
-  hasError?: boolean | null;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: () => void;
-};
+  label: string
+  id: string
+  className?: string
+  type: string
+  min?: string
+  max?: string
+  step?: string
+  value?: string
+  hasError?: boolean | null
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onBlur?: () => void
+}
 
 const FormControl: FC<FormControlProps> = ({
   label,
@@ -27,16 +27,16 @@ const FormControl: FC<FormControlProps> = ({
   onChange,
   onBlur,
 }) => {
-  let inputClassName;
+  let inputClassName
 
   if (hasError) {
     inputClassName = className
       ? `p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger ${className}`
-      : "p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger";
+      : 'p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger'
   } else {
     inputClassName = className
       ? `p-2 w-full h-10 text-dark rounded-md ${className}`
-      : "p-2 w-full h-10 text-dark rounded-md";
+      : 'p-2 w-full h-10 text-dark rounded-md'
   }
 
   return (
@@ -59,7 +59,7 @@ const FormControl: FC<FormControlProps> = ({
         onBlur={onBlur}
       />
     </div>
-  );
-};
+  )
+}
 
-export default FormControl;
+export default FormControl

@@ -18,8 +18,9 @@
   #{$parent} > * {
     flex: 0 1
       calc(
-        calc(100% / #{$columns}) -
-          calc(#{$gap} / #{$columns} * calc(#{$columns} - 1))
+        calc(100% / #{$columns}) - calc(
+            #{$gap} / #{$columns} * calc(#{$columns} - 1)
+          )
       );
   }
 }
