@@ -27,7 +27,6 @@ const Button: FC<ButtonProps> = ({
       }
       type={type || "button"}
       disabled={disabled}
-	  
       onClick={onClick}
     >
       {children}
