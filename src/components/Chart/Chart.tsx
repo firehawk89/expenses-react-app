@@ -13,12 +13,7 @@ const Chart: FC<ChartProps> = ({ data }) => {
   return (
     <Card className={`p-5 flex flex-wrap gap-y-4 bg-[#f8dfff] ${styles.chart}`}>
       {data.map((item) => (
-        <ChartBar
-          key={item.label}
-          value={item.value}
-          total={totalSum}
-          label={item.label}
-        />
+        <ChartBar key={item.label} data={item} total={totalSum} />
       ))}
     </Card>
   );
