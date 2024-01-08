@@ -13,25 +13,25 @@ const SignUp: FC = () => {
   const {
     value: emailValue,
     isValid: emailIsValid,
-    inputChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    inputClearHandler: emailClearHandler,
+    handleChange: handleEmailChange,
+    handleBlur: handleEmailBlur,
+    handleClear: handleEmailClear,
   } = useFormControl(checkInput);
 
   const {
     value: usernameValue,
     isValid: usernameIsValid,
-    inputChangeHandler: usernameChangeHandler,
-    inputBlurHandler: usernameBlurHandler,
-    inputClearHandler: usernameClearHandler,
+    handleChange: handleUsernameChange,
+    handleBlur: handleUsernameBlur,
+    handleClear: handleUsernameClear,
   } = useFormControl(checkInput);
 
   const {
     value: passwordValue,
     isValid: passwordIsValid,
-    inputChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    inputClearHandler: passwordClearHandler,
+    handleChange: handlePasswordChange,
+    handleBlur: handlePasswordBlur,
+    handleClear: handlePasswordClear,
   } = useFormControl(checkInput);
 
   const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
@@ -47,9 +47,9 @@ const SignUp: FC = () => {
   }, [emailIsValid, usernameIsValid, passwordIsValid]);
 
   const clearInputs = () => {
-    emailClearHandler();
-    usernameClearHandler();
-    passwordClearHandler();
+    handleEmailClear();
+    handleUsernameClear();
+    handlePasswordClear();
   };
 
   const submitHandler = (event: React.FormEvent) => {
@@ -66,11 +66,11 @@ const SignUp: FC = () => {
 
       clearInputs();
     } else if (!emailIsValid) {
-      emailBlurHandler();
+      handleEmailBlur();
     } else if (!usernameIsValid) {
-      usernameBlurHandler();
+      handleUsernameBlur();
     } else {
-      passwordBlurHandler();
+      handlePasswordBlur();
     }
   };
 
@@ -82,8 +82,8 @@ const SignUp: FC = () => {
         type="email"
         value={emailValue}
         hasError={emailIsValid !== null && !emailIsValid}
-        onChange={emailChangeHandler}
-        onBlur={emailBlurHandler}
+        onChange={handleEmailChange}
+        onBlur={handleEmailBlur}
       />
       <FormControl
         label="Username"
@@ -91,8 +91,8 @@ const SignUp: FC = () => {
         type="text"
         value={usernameValue}
         hasError={usernameIsValid !== null && !usernameIsValid}
-        onChange={usernameChangeHandler}
-        onBlur={usernameBlurHandler}
+        onChange={handleUsernameChange}
+        onBlur={handleUsernameBlur}
       />
       <FormControl
         label="Password"
@@ -100,8 +100,8 @@ const SignUp: FC = () => {
         type="password"
         value={passwordValue}
         hasError={passwordIsValid !== null && !passwordIsValid}
-        onChange={passwordChangeHandler}
-        onBlur={passwordBlurHandler}
+        onChange={handlePasswordChange}
+        onBlur={handlePasswordBlur}
       />
       <Button className="mt-2 mx-auto" type="submit">
         Sign Up
