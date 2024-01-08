@@ -2,11 +2,7 @@ import { FC, useContext } from "react";
 import { ModalContext } from "../../store/modal-context";
 import Card from "./Card";
 import Button from "./Button";
-
-enum ModalActions {
-  CANCEL = "cancel-btn",
-  ACTION = "action-btn",
-}
+import { MODAL_BUTTON } from "../../types/enums/ModalButtons";
 
 type ModalProps = {
   title: string;
@@ -20,7 +16,7 @@ const Modal: FC<ModalProps> = ({ title, text, onConfirm }) => {
   const closeModalHandler = (event: React.SyntheticEvent<HTMLElement>) => {
     if (
       (event.target as HTMLElement).classList.contains("modal") ||
-      (event.target as HTMLButtonElement).id === ModalActions.CANCEL
+      (event.target as HTMLButtonElement).id === MODAL_BUTTON.CANCEL
     ) {
       modalCtx.removeModal();
     }
@@ -40,14 +36,14 @@ const Modal: FC<ModalProps> = ({ title, text, onConfirm }) => {
         <p className="mb-8">{text}</p>
         <div className="flex justify-center gap-4">
           <Button
-            id={ModalActions.CANCEL}
+            id={MODAL_BUTTON.CANCEL}
             type="button"
             onClick={closeModalHandler}
           >
             Close
           </Button>
           <Button
-            id={ModalActions.ACTION}
+            id={MODAL_BUTTON.ACTION}
             className="bg-danger hover:bg-[#ce0000]"
             type="button"
             onClick={onConfirm}
