@@ -1,28 +1,20 @@
 import { FC } from "react";
+import Expense from "../../types/models/expense-model";
 import ExpenseItemDate from "./ExpenseItemDate";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import deleteImg from "../../assets/img/trash.svg";
 
 type ExpenseItemProps = {
-  id: string | undefined;
-  title: string;
-  amount: number;
-  date: Date;
+  data: Expense;
   onDelete: (id: string, title: string) => void;
 };
 
-const ExpenseItem: FC<ExpenseItemProps> = ({
-  id,
-  title,
-  amount,
-  date,
-  onDelete,
-}) => {
-  const deleteHandler = () => {
-    if (id) {
-      onDelete(id, title);
-    }
+const ExpenseItem: FC<ExpenseItemProps> = ({ data, onDelete }) => {
+  const { id, title, amount, date } = data;
+
+  const handleExpenseDelete = () => {
+    onDelete(id!, title);
   };
 
   return (
@@ -42,7 +34,7 @@ const ExpenseItem: FC<ExpenseItemProps> = ({
       <Button
         className="!p-3 ml-3 bg-dark hover:shadow-card focus:scale-95 transition-all"
         type="button"
-        onClick={deleteHandler}
+        onClick={handleExpenseDelete}
       >
         <img className="w-4 h-4 md:w-5 md:h-5" src={deleteImg} alt="Delete" />
       </Button>
