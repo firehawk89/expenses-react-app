@@ -2,49 +2,53 @@ import { useState, useContext, FC } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../../store/modal-context";
 import useHttpRequest from "../../hooks/use-http-request";
+import { dbUrl } from "../../utils/constants";
 import Expense from "../../types/models/expense-model";
 import Modal from "../UI/Modal";
 import ExpenseItem from "./ExpenseItem";
 
 type ExpensesListProps = {
-  items: Expense[];
-  onDeleteItem: (id: string) => void;
+  expenses: Expense[];
   isLoading: boolean;
   error: string | null;
+  onDeleteItem: (id: string) => void;
+};
+
+type ExpenseData = {
+  expenseId: string;
+  expenseTitle: string;
 };
 
 const ExpensesList: FC<ExpensesListProps> = ({
-  items,
-  onDeleteItem,
+  expenses,
   isLoading,
   error,
+  onDeleteItem,
 }) => {
   const modalCtx = useContext(ModalContext);
-  const [expenseData, setExpenseData] = useState<{
-    expenseId: string;
-    expenseTitle: string;
-  }>({ expenseId: "", expenseTitle: "" });
+  const [expenseData, setExpenseData] = useState<ExpenseData>({
+    expenseId: "",
+    expenseTitle: "",
+  });
   const { sendRequest: deleteExpense } = useHttpRequest();
-
-  const warningHandler = (id: string, title: string) => {
-    modalCtx.displayModal();
-    setExpenseData({ expenseId: id, expenseTitle: title });
-  };
 
   const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
   const modalTitle = "Delete expense";
+
+  const displayWarning = (id: string, title: string) => {
+    modalCtx.displayModal();
+    setExpenseData({ expenseId: id, expenseTitle: title });
+  };
 
   const removeExpense = (expenseId: string) => {
     modalCtx.removeModal();
     onDeleteItem(expenseId);
   };
 
-  const deleteItemHandler = async () => {
+  const handleExpenseDelete = async () => {
     deleteExpense(
       {
-        url: `${import.meta.env.VITE_DATABASE_URL}/expenses/${
-          expenseData.expenseId
-        }.json`,
+        url: `${dbUrl}/expenses/${expenseData.expenseId}.json`,
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -61,17 +65,14 @@ const ExpensesList: FC<ExpensesListProps> = ({
     </h2>
   );
 
-  if (items.length > 0) {
+  if (expenses.length > 0) {
     expenseList = (
       <ul className="list-none">
-        {items.map((expense) => (
+        {expenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
-            id={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-            onDelete={warningHandler}
+			data={expense}
+            onDelete={displayWarning}
           />
         ))}
       </ul>
@@ -102,7 +103,7 @@ const ExpensesList: FC<ExpensesListProps> = ({
         <Modal
           title={modalTitle}
           text={modalText}
-          onConfirm={deleteItemHandler}
+          onConfirm={handleExpenseDelete}
         />,
         document.getElementById("modal-root") as HTMLDivElement
       )}
