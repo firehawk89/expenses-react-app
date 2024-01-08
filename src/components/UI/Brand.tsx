@@ -1,5 +1,5 @@
-import { FC } from "react";
-import logo from "../../assets/img/logo.png";
+import { FC } from 'react'
+import logo from '../../assets/img/logo.png'
 
 const Brand: FC = () => {
   return (
@@ -7,7 +7,7 @@ const Brand: FC = () => {
       <img className="w-12 h-12" src={logo} alt="Expenses React App Logo" />
       <span className="block font-medium text-light">Expense Tracker</span>
     </div>
-  );
-};
+  )
+}
 
-export default Brand;
+export default Brand

@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC } from 'react'
 
 type ExpenseDateProps = {
-  date: Date;
-};
+  date: Date
+}
 
 const ExpenseItemDate: FC<ExpenseDateProps> = ({ date }) => {
-  const month = date.toLocaleString("en-US", { month: "long" });
-  const day = date.toLocaleString("en-US", { day: "2-digit" });
-  const year = date.getFullYear();
+  const month = date.toLocaleString('en-US', { month: 'long' })
+  const day = date.toLocaleString('en-US', { day: '2-digit' })
+  const year = date.getFullYear()
 
   return (
     <div className="w-20 h-20 flex flex-col items-center justify-center rounded-xl text-light bg-primary">
@@ -15,7 +15,7 @@ const ExpenseItemDate: FC<ExpenseDateProps> = ({ date }) => {
       <span className="text-xl md:text-2xl font-bold">{year}</span>
       <span className="text-xs md:text-sm">{day}</span>
     </div>
-  );
-};
+  )
+}
 
-export default ExpenseItemDate;
+export default ExpenseItemDate

@@ -1,17 +1,17 @@
-import { useState, useEffect, FC } from "react";
-import useHttpRequest from "../hooks/use-http-request";
-import { dbUrl } from "../utils/constants";
-import Expense from "../types/models/expense-model";
-import Expenses from "../components/Expenses/Expenses";
-import NewExpense from "../components/NewExpense/NewExpense";
+import { useState, useEffect, FC } from 'react'
+import useHttpRequest from '../hooks/use-http-request'
+import { dbUrl } from '../utils/constants'
+import Expense from '../types/models/expense-model'
+import Expenses from '../components/Expenses/Expenses'
+import NewExpense from '../components/NewExpense/NewExpense'
 
 const HomePage: FC = () => {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
-  const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest();
+  const [expenses, setExpenses] = useState<Expense[]>([])
+  const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest()
 
   useEffect(() => {
     const updateExpenses = (expensesObj: Expense[]) => {
-      const loadedExpenses = [];
+      const loadedExpenses = []
 
       for (const expenseKey in expensesObj) {
         loadedExpenses.push(
@@ -21,31 +21,31 @@ const HomePage: FC = () => {
             expensesObj[expenseKey].amount,
             new Date(expensesObj[expenseKey].date)
           )
-        );
+        )
       }
 
-      setExpenses(loadedExpenses);
-    };
+      setExpenses(loadedExpenses)
+    }
 
     fetchExpenses(
       {
         url: `${dbUrl}/expenses.json`,
       },
       updateExpenses
-    );
-  }, [fetchExpenses]);
+    )
+  }, [fetchExpenses])
 
   const addExpenseHandler = (expense: Expense) => {
     setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
-  };
+      return [expense, ...prevExpenses]
+    })
+  }
 
   const deleteItemHandler = (itemId: string) => {
     setExpenses((prevExpenses) => {
-      return prevExpenses.filter((expense) => expense.id !== itemId);
-    });
-  };
+      return prevExpenses.filter((expense) => expense.id !== itemId)
+    })
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ const HomePage: FC = () => {
         onDeleteItem={deleteItemHandler}
       />
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

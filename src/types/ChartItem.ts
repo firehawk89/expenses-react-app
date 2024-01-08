@@ -1,3 +1,3 @@
-type ChartItem = { label: string; value: number };
+type ChartItem = { label: string; value: number }
 
-export default ChartItem;
+export default ChartItem

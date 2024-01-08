@@ -1,13 +1,13 @@
-import { useState, useEffect, FC } from "react";
-import useFormControl from "../../hooks/use-form-control";
-import User from "../../types/models/user-model";
-import AuthForm from "./AuthForm";
-import FormControl from "../UI/FormControl";
-import Button from "../UI/Button";
+import { useState, useEffect, FC } from 'react'
+import useFormControl from '../../hooks/use-form-control'
+import User from '../../types/models/user-model'
+import AuthForm from './AuthForm'
+import FormControl from '../UI/FormControl'
+import Button from '../UI/Button'
 
 const checkInput = (value: string) => {
-  return value.trim().length !== 0;
-};
+  return value.trim().length !== 0
+}
 
 const SignUp: FC = () => {
   const {
@@ -16,7 +16,7 @@ const SignUp: FC = () => {
     handleChange: handleEmailChange,
     handleBlur: handleEmailBlur,
     handleClear: handleEmailClear,
-  } = useFormControl(checkInput);
+  } = useFormControl(checkInput)
 
   const {
     value: usernameValue,
@@ -24,7 +24,7 @@ const SignUp: FC = () => {
     handleChange: handleUsernameChange,
     handleBlur: handleUsernameBlur,
     handleClear: handleUsernameClear,
-  } = useFormControl(checkInput);
+  } = useFormControl(checkInput)
 
   const {
     value: passwordValue,
@@ -32,47 +32,47 @@ const SignUp: FC = () => {
     handleChange: handlePasswordChange,
     handleBlur: handlePasswordBlur,
     handleClear: handlePasswordClear,
-  } = useFormControl(checkInput);
+  } = useFormControl(checkInput)
 
-  const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
+  const [formIsValid, setFormIsValid] = useState<boolean | null>(false)
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      setFormIsValid(emailIsValid && usernameIsValid && passwordIsValid);
-    }, 250);
+      setFormIsValid(emailIsValid && usernameIsValid && passwordIsValid)
+    }, 250)
 
     return () => {
-      clearTimeout(identifier);
-    };
-  }, [emailIsValid, usernameIsValid, passwordIsValid]);
+      clearTimeout(identifier)
+    }
+  }, [emailIsValid, usernameIsValid, passwordIsValid])
 
   const clearInputs = () => {
-    handleEmailClear();
-    handleUsernameClear();
-    handlePasswordClear();
-  };
+    handleEmailClear()
+    handleUsernameClear()
+    handlePasswordClear()
+  }
 
   const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (formIsValid) {
       const userData: User = {
         email: emailValue,
         username: usernameValue,
         password: passwordValue,
-      };
+      }
 
-      console.log(userData);
+      console.log(userData)
 
-      clearInputs();
+      clearInputs()
     } else if (!emailIsValid) {
-      handleEmailBlur();
+      handleEmailBlur()
     } else if (!usernameIsValid) {
-      handleUsernameBlur();
+      handleUsernameBlur()
     } else {
-      handlePasswordBlur();
+      handlePasswordBlur()
     }
-  };
+  }
 
   return (
     <AuthForm formType="register" onSubmit={submitHandler}>
@@ -107,7 +107,7 @@ const SignUp: FC = () => {
         Sign Up
       </Button>
     </AuthForm>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

@@ -1,18 +1,18 @@
-import { FC } from "react";
-import ChartItem from "../../types/ChartItem";
+import { FC } from 'react'
+import ChartItem from '../../types/ChartItem'
 
 type ChartBarProps = {
-  data: ChartItem;
-  total: number;
-};
+  data: ChartItem
+  total: number
+}
 
 const ChartBar: FC<ChartBarProps> = ({ data, total }) => {
-  const { label, value } = data;
+  const { label, value } = data
 
-  let barFillHeight = "0%";
+  let barFillHeight = '0%'
 
   if (total > 0) {
-    barFillHeight = Math.round((value / total) * 100) + "%";
+    barFillHeight = Math.round((value / total) * 100) + '%'
   }
 
   return (
@@ -25,7 +25,7 @@ const ChartBar: FC<ChartBarProps> = ({ data, total }) => {
       </div>
       <div className="text-sm font-semibold text-center text-dark">{label}</div>
     </div>
-  );
-};
+  )
+}
 
-export default ChartBar;
+export default ChartBar

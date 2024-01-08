@@ -1,23 +1,23 @@
-import { useState, useContext, FC } from "react";
-import ReactDOM from "react-dom";
-import { ModalContext } from "../../store/modal-context";
-import useHttpRequest from "../../hooks/use-http-request";
-import { dbUrl } from "../../utils/constants";
-import Expense from "../../types/models/expense-model";
-import Modal from "../UI/Modal";
-import ExpenseItem from "./ExpenseItem";
+import { useState, useContext, FC } from 'react'
+import ReactDOM from 'react-dom'
+import { ModalContext } from '../../store/modal-context'
+import useHttpRequest from '../../hooks/use-http-request'
+import { dbUrl } from '../../utils/constants'
+import Expense from '../../types/models/expense-model'
+import Modal from '../UI/Modal'
+import ExpenseItem from './ExpenseItem'
 
 type ExpensesListProps = {
-  expenses: Expense[];
-  isLoading: boolean;
-  error: string | null;
-  onDeleteItem: (id: string) => void;
-};
+  expenses: Expense[]
+  isLoading: boolean
+  error: string | null
+  onDeleteItem: (id: string) => void
+}
 
 type ExpenseData = {
-  expenseId: string;
-  expenseTitle: string;
-};
+  expenseId: string
+  expenseTitle: string
+}
 
 const ExpensesList: FC<ExpensesListProps> = ({
   expenses,
@@ -25,45 +25,45 @@ const ExpensesList: FC<ExpensesListProps> = ({
   error,
   onDeleteItem,
 }) => {
-  const modalCtx = useContext(ModalContext);
+  const modalCtx = useContext(ModalContext)
   const [expenseData, setExpenseData] = useState<ExpenseData>({
-    expenseId: "",
-    expenseTitle: "",
-  });
-  const { sendRequest: deleteExpense } = useHttpRequest();
+    expenseId: '',
+    expenseTitle: '',
+  })
+  const { sendRequest: deleteExpense } = useHttpRequest()
 
-  const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`;
-  const modalTitle = "Delete expense";
+  const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`
+  const modalTitle = 'Delete expense'
 
   const displayWarning = (id: string, title: string) => {
-    modalCtx.displayModal();
-    setExpenseData({ expenseId: id, expenseTitle: title });
-  };
+    modalCtx.displayModal()
+    setExpenseData({ expenseId: id, expenseTitle: title })
+  }
 
   const removeExpense = (expenseId: string) => {
-    modalCtx.removeModal();
-    onDeleteItem(expenseId);
-  };
+    modalCtx.removeModal()
+    onDeleteItem(expenseId)
+  }
 
   const handleExpenseDelete = async () => {
     deleteExpense(
       {
         url: `${dbUrl}/expenses/${expenseData.expenseId}.json`,
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       },
 
       removeExpense.bind(null, expenseData.expenseId)
-    );
-  };
+    )
+  }
 
   let expenseList = (
     <h2 className="mt-8 md:text-xl font-bold text-center text-light">
       Found no expenses.
     </h2>
-  );
+  )
 
   if (expenses.length > 0) {
     expenseList = (
@@ -71,22 +71,22 @@ const ExpensesList: FC<ExpensesListProps> = ({
         {expenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
-			data={expense}
+            data={expense}
             onDelete={displayWarning}
           />
         ))}
       </ul>
-    );
+    )
   }
 
-  let content = expenseList;
+  let content = expenseList
 
   if (isLoading) {
     content = (
       <h2 className="mt-8 md:text-xl font-bold text-center text-light">
         Loading expenses...
       </h2>
-    );
+    )
   }
 
   if (error) {
@@ -94,7 +94,7 @@ const ExpensesList: FC<ExpensesListProps> = ({
       <h2 className="mt-8 md:text-xl font-bold text-center text-light">
         {error}
       </h2>
-    );
+    )
   }
 
   return (
@@ -105,11 +105,11 @@ const ExpensesList: FC<ExpensesListProps> = ({
           text={modalText}
           onConfirm={handleExpenseDelete}
         />,
-        document.getElementById("modal-root") as HTMLDivElement
+        document.getElementById('modal-root') as HTMLDivElement
       )}
       {content}
     </>
-  );
-};
+  )
+}
 
-export default ExpensesList;
+export default ExpensesList

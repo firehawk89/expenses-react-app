@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { baseUrl } from "./utils/constants";
-import RootLayout from "./pages/Root";
-import HomePage from "./pages/Home";
-import RegisterPage from "./pages/Register";
-import LoginPage from "./pages/Login";
+import { FC } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { baseUrl } from './utils/constants'
+import RootLayout from './pages/Root'
+import HomePage from './pages/Home'
+import RegisterPage from './pages/Register'
+import LoginPage from './pages/Login'
 
 const router = createBrowserRouter([
   {
@@ -16,10 +16,10 @@ const router = createBrowserRouter([
       { path: `${baseUrl}login`, element: <LoginPage /> },
     ],
   },
-]);
+])
 
 const App: FC = () => {
-  return <RouterProvider router={router} />;
-};
+  return <RouterProvider router={router} />
+}
 
-export default App;
+export default App

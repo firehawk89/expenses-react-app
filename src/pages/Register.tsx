@@ -1,8 +1,8 @@
-import { FC } from "react";
-import SignUpForm from "../components/Auth/SignUp";
+import { FC } from 'react'
+import SignUpForm from '../components/Auth/SignUp'
 
 const RegisterPage: FC = () => {
-  return <SignUpForm />;
-};
+  return <SignUpForm />
+}
 
-export default RegisterPage;
+export default RegisterPage

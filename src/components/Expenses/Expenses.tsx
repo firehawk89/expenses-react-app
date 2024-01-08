@@ -1,16 +1,16 @@
-import { FC, useState } from "react";
-import Expense from "../../types/models/expense-model";
-import Card from "../UI/Card";
-import ExpensesFilter from "./ExpensesFilter";
-import ExpensesList from "./ExpensesList";
-import ExpensesChart from "./ExpensesChart";
+import { FC, useState } from 'react'
+import Expense from '../../types/models/expense-model'
+import Card from '../UI/Card'
+import ExpensesFilter from './ExpensesFilter'
+import ExpensesList from './ExpensesList'
+import ExpensesChart from './ExpensesChart'
 
 type ExpensesProps = {
-  data: Expense[];
-  isLoading: boolean;
-  error: string | null;
-  onDeleteItem: (id: string) => void;
-};
+  data: Expense[]
+  isLoading: boolean
+  error: string | null
+  onDeleteItem: (id: string) => void
+}
 
 const Expenses: FC<ExpensesProps> = ({
   data,
@@ -18,19 +18,19 @@ const Expenses: FC<ExpensesProps> = ({
   error,
   onDeleteItem,
 }) => {
-  const [year, setYear] = useState<string>("");
+  const [year, setYear] = useState<string>('')
 
   const onSelectedItemHandler = (selectedYear: string) => {
-    setYear(selectedYear);
-  };
+    setYear(selectedYear)
+  }
 
-  let filteredExpenses;
+  let filteredExpenses
   if (year) {
     filteredExpenses = data.filter((expense) => {
-      return expense.date.getFullYear().toString() === year;
-    });
+      return expense.date.getFullYear().toString() === year
+    })
   } else {
-    filteredExpenses = data;
+    filteredExpenses = data
   }
 
   return (
@@ -44,7 +44,7 @@ const Expenses: FC<ExpensesProps> = ({
         onDeleteItem={onDeleteItem}
       />
     </Card>
-  );
-};
+  )
+}
 
-export default Expenses;
+export default Expenses

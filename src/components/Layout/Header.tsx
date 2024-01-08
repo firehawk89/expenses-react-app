@@ -1,7 +1,7 @@
-import { FC } from "react";
-import Container from "../UI/Container";
-import Menu from "./Menu";
-import Brand from "../UI/Brand";
+import { FC } from 'react'
+import Container from '../UI/Container'
+import Menu from './Menu'
+import Brand from '../UI/Brand'
 
 const Header: FC = () => {
   return (
@@ -15,7 +15,7 @@ const Header: FC = () => {
         </div>
       </Container>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

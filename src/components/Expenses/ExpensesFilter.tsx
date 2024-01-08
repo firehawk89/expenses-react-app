@@ -1,17 +1,17 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC } from 'react'
 
 type ExpensesFilterProps = {
-  selected: string;
-  onSelectedItem: (year: string) => void;
-};
+  selected: string
+  onSelectedItem: (year: string) => void
+}
 
 const ExpensesFilter: FC<ExpensesFilterProps> = ({
   selected,
   onSelectedItem,
 }) => {
   const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    onSelectedItem(event.target.value);
-  };
+    onSelectedItem(event.target.value)
+  }
 
   return (
     <div className="px-4 text-light">
@@ -31,7 +31,7 @@ const ExpensesFilter: FC<ExpensesFilterProps> = ({
         </select>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ExpensesFilter;
+export default ExpensesFilter
