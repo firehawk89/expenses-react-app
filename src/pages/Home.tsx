@@ -1,61 +1,44 @@
 import { useState, useEffect, FC } from 'react'
-import useHttpRequest from '../hooks/use-http-request'
-import { dbUrl } from '../utils/constants'
+import { useQuery } from '@tanstack/react-query'
+import { getExpenses } from '../utils/expenses'
 import Expense from '../types/models/expense-model'
 import Expenses from '../components/Expenses/Expenses'
 import NewExpense from '../components/NewExpense/NewExpense'
 
+const formatExpenses = (expenses: Expense[]) => {
+  const formattedExpenses = []
+
+  for (const expenseKey in expenses) {
+    formattedExpenses.push(
+      new Expense(
+        expenseKey,
+        expenses[expenseKey].title,
+        expenses[expenseKey].amount,
+        new Date(expenses[expenseKey].date)
+      )
+    )
+  }
+
+  return formattedExpenses
+}
+
 const HomePage: FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([])
-  const { isLoading, error, sendRequest: fetchExpenses } = useHttpRequest()
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ['expenses'],
+    queryFn: ({ signal }) => getExpenses({ signal }),
+  })
 
   useEffect(() => {
-    const updateExpenses = (expensesObj: Expense[]) => {
-      const loadedExpenses = []
-
-      for (const expenseKey in expensesObj) {
-        loadedExpenses.push(
-          new Expense(
-            expenseKey,
-            expensesObj[expenseKey].title,
-            expensesObj[expenseKey].amount,
-            new Date(expensesObj[expenseKey].date)
-          )
-        )
-      }
-
-      setExpenses(loadedExpenses)
-    }
-
-    fetchExpenses(
-      {
-        url: `${dbUrl}/expenses.json`,
-      },
-      updateExpenses
-    )
-  }, [fetchExpenses])
-
-  const addExpenseHandler = (expense: Expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses]
-    })
-  }
-
-  const deleteItemHandler = (itemId: string) => {
-    setExpenses((prevExpenses) => {
-      return prevExpenses.filter((expense) => expense.id !== itemId)
-    })
-  }
+    const formattedExpenses = formatExpenses(data)
+    setExpenses(formattedExpenses)
+  }, [data])
 
   return (
     <>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses
-        data={expenses}
-        isLoading={isLoading}
-        error={error}
-        onDeleteItem={deleteItemHandler}
-      />
+      <NewExpense />
+      <Expenses data={expenses} isLoading={isPending} error={error?.message} />
     </>
   )
 }
