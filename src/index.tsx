@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import ModalContextProvider from './store/modal-context'
+import Providers from './store/Providers'
 import App from './App'
 import './styles/index.scss'
 
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 )
 
 root.render(
-  <ModalContextProvider>
+  <Providers>
     <App />
-  </ModalContextProvider>
+  </Providers>
 )
