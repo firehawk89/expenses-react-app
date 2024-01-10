@@ -1,8 +1,9 @@
 import { useState, useContext, FC } from 'react'
 import ReactDOM from 'react-dom'
+import { useMutation } from '@tanstack/react-query'
 import { ModalContext } from '../../store/modal-context'
-import useHttpRequest from '../../hooks/use-http-request'
-import { dbUrl } from '../../utils/constants'
+import { queryClient } from '../../store/Providers'
+import { deleteExpense } from '../../utils/expenses'
 import Expense from '../../types/models/expense-model'
 import Modal from '../UI/Modal'
 import ExpenseItem from './ExpenseItem'
@@ -10,8 +11,7 @@ import ExpenseItem from './ExpenseItem'
 type ExpensesListProps = {
   expenses: Expense[]
   isLoading: boolean
-  error: string | null
-  onDeleteItem: (id: string) => void
+  error?: string
 }
 
 type ExpenseData = {
@@ -23,14 +23,21 @@ const ExpensesList: FC<ExpensesListProps> = ({
   expenses,
   isLoading,
   error,
-  onDeleteItem,
 }) => {
   const modalCtx = useContext(ModalContext)
   const [expenseData, setExpenseData] = useState<ExpenseData>({
     expenseId: '',
     expenseTitle: '',
   })
-  const { sendRequest: deleteExpense } = useHttpRequest()
+
+  const { mutate } = useMutation({
+    mutationFn: deleteExpense,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['expenses'],
+      })
+    },
+  })
 
   const modalText = `Are you sure you want to delete expense "${expenseData.expenseTitle}"?`
   const modalTitle = 'Delete expense'
@@ -40,23 +47,10 @@ const ExpensesList: FC<ExpensesListProps> = ({
     setExpenseData({ expenseId: id, expenseTitle: title })
   }
 
-  const removeExpense = (expenseId: string) => {
-    modalCtx.removeModal()
-    onDeleteItem(expenseId)
-  }
-
   const handleExpenseDelete = async () => {
-    deleteExpense(
-      {
-        url: `${dbUrl}/expenses/${expenseData.expenseId}.json`,
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
-
-      removeExpense.bind(null, expenseData.expenseId)
-    )
+    const id = expenseData.expenseId
+    mutate({ id })
+    modalCtx.removeModal()
   }
 
   let expenseList = (

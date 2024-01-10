@@ -1,52 +1,27 @@
 import { FC, useState } from 'react'
-import useHttpRequest from '../../hooks/use-http-request'
+import { useMutation } from '@tanstack/react-query'
+import { queryClient } from '../../store/Providers'
+import { addExpense } from '../../utils/expenses'
 import Expense from '../../types/models/expense-model'
 import Card from '../UI/Card'
 import Button from '../UI/Button'
 import NewExpenseForm from './NewExpenseForm'
-import { dbUrl } from '../../utils/constants'
 
-type NewExpenseProps = {
-  onAddExpense: (expense: Expense) => void
-}
-
-const NewExpense: FC<NewExpenseProps> = ({ onAddExpense }) => {
+const NewExpense: FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false)
-  const { isLoading, sendRequest: addExpense } = useHttpRequest()
 
-  const createExpense = (
-    enteredExpenseData: Expense,
-    expenseData: { name: string }
-  ) => {
-    const generatedId = expenseData.name // firebase-specific => "name" contains generated id
-    const createdExpense = new Expense(
-      generatedId,
-      enteredExpenseData.title,
-      enteredExpenseData.amount,
-      enteredExpenseData.date
-    )
+  const { mutate, isPending } = useMutation({
+    mutationFn: addExpense,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['expenses'],
+      })
+    },
+  })
 
-    onAddExpense(createdExpense)
+  const handleExpenseCreate = async (enteredExpenseData: Expense) => {
+    mutate(enteredExpenseData)
     setIsEditing(false)
-  }
-
-  const saveExpenseData = async (enteredExpenseData: Expense) => {
-    addExpense(
-      {
-        url: `${dbUrl}/expenses.json`,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: {
-          title: enteredExpenseData.title,
-          amount: enteredExpenseData.amount,
-          date: enteredExpenseData.date.toISOString().split('T')[0],
-        },
-      },
-
-      createExpense.bind(null, enteredExpenseData)
-    )
   }
 
   const startEditing = () => {
@@ -65,8 +40,8 @@ const NewExpense: FC<NewExpenseProps> = ({ onAddExpense }) => {
         </Button>
       ) : (
         <NewExpenseForm
-          isLoading={isLoading}
-          onSubmit={saveExpenseData}
+          isLoading={isPending}
+          onSubmit={handleExpenseCreate}
           onCancel={stopEditing}
         />
       )}

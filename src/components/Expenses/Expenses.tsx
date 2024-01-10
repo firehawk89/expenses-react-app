@@ -8,29 +8,22 @@ import ExpensesChart from './ExpensesChart'
 type ExpensesProps = {
   data: Expense[]
   isLoading: boolean
-  error: string | null
-  onDeleteItem: (id: string) => void
+  error?: string
 }
 
-const Expenses: FC<ExpensesProps> = ({
-  data,
-  isLoading,
-  error,
-  onDeleteItem,
-}) => {
+const Expenses: FC<ExpensesProps> = ({ data, isLoading, error }) => {
   const [year, setYear] = useState<string>('')
 
   const onSelectedItemHandler = (selectedYear: string) => {
     setYear(selectedYear)
   }
 
-  let filteredExpenses
+  let filteredExpenses = data
+
   if (year) {
     filteredExpenses = data.filter((expense) => {
       return expense.date.getFullYear().toString() === year
     })
-  } else {
-    filteredExpenses = data
   }
 
   return (
@@ -41,7 +34,6 @@ const Expenses: FC<ExpensesProps> = ({
         expenses={filteredExpenses}
         isLoading={isLoading}
         error={error}
-        onDeleteItem={onDeleteItem}
       />
     </Card>
   )
