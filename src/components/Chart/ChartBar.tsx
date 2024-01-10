@@ -12,7 +12,8 @@ const ChartBar: FC<ChartBarProps> = ({ data, total }) => {
   let barFillHeight = '0%'
 
   if (total > 0) {
-    barFillHeight = Math.round((value / total) * 100) + '%'
+    const percentage = Math.round((value / total) * 100)
+    barFillHeight = `${percentage}%`
   }
 
   return (
