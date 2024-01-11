@@ -14,11 +14,11 @@ const ExpensesFilter: FC<ExpensesFilterProps> = ({
   }
 
   return (
-    <div className="px-4 text-light">
+    <div className="px-4">
       <div className="my-5 flex items-center justify-between">
         <label className="font-bold">Filter by year</label>
         <select
-          className="py-2 px-6 font-bold rounded-md text-dark"
+          className="py-2 px-6 font-bold rounded-md text-inherit"
           value={selected}
           onChange={handleYearChange}
         >

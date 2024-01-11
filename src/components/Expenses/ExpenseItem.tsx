@@ -19,12 +19,12 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ data, onDelete }) => {
 
   return (
     <Card
-      className="p-3 my-4 flex items-center justify-between bg-secondary"
+      className="p-4 my-4 flex items-center justify-between bg-light"
       tagName="li"
     >
       <ExpenseItemDate date={date} />
       <div className="flex-[1] flex flex-col-reverse items-end md:flex-row md:items-center justify-start gap-3">
-        <h2 className="flex-[1] md:mx-4 md:text-xl text-right md:text-left text-light">
+        <h2 className="flex-[1] md:mx-4 md:text-xl text-right md:text-left">
           {title}
         </h2>
         <span className="p-2 md:py-2 md:px-6 md:text-xl rounded-xl text-light bg-accent">
@@ -32,7 +32,7 @@ const ExpenseItem: FC<ExpenseItemProps> = ({ data, onDelete }) => {
         </span>
       </div>
       <Button
-        className="!p-3 ml-3 bg-dark hover:shadow-card focus:scale-95 transition-all"
+        className="!p-3 ml-3 hover:shadow-card focus:scale-95 transition-all"
         type="button"
         onClick={handleExpenseDelete}
       >

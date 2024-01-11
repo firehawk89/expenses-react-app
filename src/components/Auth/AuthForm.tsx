@@ -14,7 +14,7 @@ const AuthForm: FC<AuthFormProps> = ({ children, formType, onSubmit }) => {
 
   if (formType === 'login') {
     additionalContent = (
-      <p className="mt-5 mb-1 text-center text-primary">
+      <p className="mt-5 mb-1 text-center">
         Don't have an account yet?{' '}
         <Link className="ml-1 text-accent" to={`${baseUrl}register`}>
           Sign Up
@@ -23,7 +23,7 @@ const AuthForm: FC<AuthFormProps> = ({ children, formType, onSubmit }) => {
     )
   } else {
     additionalContent = (
-      <p className="mt-5 mb-1 text-center text-primary">
+      <p className="mt-5 mb-1 text-center">
         Already have an account?{' '}
         <Link className="ml-1 text-accent" to={`${baseUrl}login`}>
           Sign In

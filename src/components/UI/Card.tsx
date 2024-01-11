@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import { classnames } from '../../utils/misc'
 
 type CardProps = {
   className?: string
@@ -11,11 +12,10 @@ const Card: FC<CardProps> = ({ className, tagName, children }) => {
 
   return (
     <CardTag
-      className={
+      className={classnames(
+        'overflow-hidden rounded-md shadow-card',
         className
-          ? `overflow-hidden rounded-md shadow-card ${className}`
-          : 'overflow-hidden rounded-md shadow-card'
-      }
+      )}
     >
       {children}
     </CardTag>

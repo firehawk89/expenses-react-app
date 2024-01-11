@@ -1,47 +1,13 @@
 import { FC } from 'react'
-import { NavLink } from 'react-router-dom'
 import { baseUrl } from '../../utils/constants'
+import MenuItem from './MenuItem'
 
 const Menu: FC = () => {
   return (
-    <ul className="flex items-center gap-8">
-      <li>
-        <NavLink
-          to={baseUrl}
-          className={({ isActive }) =>
-            isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
-          }
-          end
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={`${baseUrl}login`}
-          className={({ isActive }) =>
-            isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
-          }
-        >
-          Log In
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={`${baseUrl}register`}
-          className={({ isActive }) =>
-            isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
-          }
-        >
-          Sign Up
-        </NavLink>
-      </li>
+    <ul className="flex items-center gap-8 ">
+      <MenuItem link={baseUrl}>Home</MenuItem>
+      <MenuItem link={`${baseUrl}login`}>Log In</MenuItem>
+      <MenuItem link={`${baseUrl}register`}>Register</MenuItem>
     </ul>
   )
 }
