@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from 'react'
+import { classnames } from '../../utils/misc'
 
 type FormControlProps = {
   label: string
@@ -27,18 +28,6 @@ const FormControl: FC<FormControlProps> = ({
   onChange,
   onBlur,
 }) => {
-  let inputClassName
-
-  if (hasError) {
-    inputClassName = className
-      ? `p-2 w-full h-10 rounded-md outline outline-2 outline-danger ${className}`
-      : 'p-2 w-full h-10 rounded-md outline outline-2 outline-danger'
-  } else {
-    inputClassName = className
-      ? `p-2 w-full h-10 rounded-md ${className}`
-      : 'p-2 w-full h-10 rounded-md'
-  }
-
   return (
     <div>
       <label className="mb-2 block text-sm sm:text-base font-bold" htmlFor={id}>
@@ -46,7 +35,11 @@ const FormControl: FC<FormControlProps> = ({
       </label>
       <input
         id={id}
-        className={inputClassName}
+        className={classnames(
+          'p-2 w-full h-10 rounded-md',
+          className,
+          hasError && 'outline outline-2 outline-danger'
+        )}
         type={type}
         min={min}
         max={max}
