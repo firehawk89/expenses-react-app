@@ -31,20 +31,17 @@ const FormControl: FC<FormControlProps> = ({
 
   if (hasError) {
     inputClassName = className
-      ? `p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger ${className}`
-      : 'p-2 w-full h-10 text-dark rounded-md outline outline-2 outline-danger'
+      ? `p-2 w-full h-10 rounded-md outline outline-2 outline-danger ${className}`
+      : 'p-2 w-full h-10 rounded-md outline outline-2 outline-danger'
   } else {
     inputClassName = className
-      ? `p-2 w-full h-10 text-dark rounded-md ${className}`
-      : 'p-2 w-full h-10 text-dark rounded-md'
+      ? `p-2 w-full h-10 rounded-md ${className}`
+      : 'p-2 w-full h-10 rounded-md'
   }
 
   return (
     <div>
-      <label
-        className="mb-2 block text-sm sm:text-base font-bold text-dark"
-        htmlFor={id}
-      >
+      <label className="mb-2 block text-sm sm:text-base font-bold" htmlFor={id}>
         {label}
       </label>
       <input

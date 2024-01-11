@@ -5,7 +5,7 @@ import Brand from '../UI/Brand'
 
 const Header: FC = () => {
   return (
-    <header className="py-4 bg-primary">
+    <header className="py-4 bg-background">
       <Container>
         <div className="flex items-center justify-between">
           <Brand />

@@ -54,7 +54,7 @@ const ExpensesList: FC<ExpensesListProps> = ({
   }
 
   let expenseList = (
-    <h2 className="mt-8 md:text-xl font-bold text-center text-light">
+    <h2 className="mt-8 md:text-xl font-bold text-center">
       Found no expenses.
     </h2>
   )
@@ -77,18 +77,14 @@ const ExpensesList: FC<ExpensesListProps> = ({
 
   if (isLoading) {
     content = (
-      <h2 className="mt-8 md:text-xl font-bold text-center text-light">
+      <h2 className="mt-8 md:text-xl font-bold text-center">
         Loading expenses...
       </h2>
     )
   }
 
   if (error) {
-    content = (
-      <h2 className="mt-8 md:text-xl font-bold text-center text-light">
-        {error}
-      </h2>
-    )
+    content = <h2 className="mt-8 md:text-xl font-bold text-center">{error}</h2>
   }
 
   return (

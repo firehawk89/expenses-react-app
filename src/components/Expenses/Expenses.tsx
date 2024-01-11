@@ -27,7 +27,7 @@ const Expenses: FC<ExpensesProps> = ({ data, isLoading, error }) => {
   }
 
   return (
-    <Card className="p-6 mt-8 mx-auto max-w-[50rem] bg-primary">
+    <Card className="p-6 mt-8 mx-auto max-w-[50rem] bg-background">
       <ExpensesFilter selected={year} onSelectedItem={onSelectedItemHandler} />
       <ExpensesChart expenses={filteredExpenses} />
       <ExpensesList

@@ -31,7 +31,7 @@ const Modal: FC<ModalProps> = ({ title, text, onConfirm }) => {
       }
       onClick={closeModal}
     >
-      <Card className="p-8 flex flex-col text-dark bg-light">
+      <Card className="p-8 flex flex-col bg-light">
         <h2 className="mb-5 text-xl font-semibold text-center">{title}</h2>
         <p className="mb-8">{text}</p>
         <div className="flex justify-center gap-4">

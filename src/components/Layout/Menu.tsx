@@ -4,14 +4,14 @@ import { baseUrl } from '../../utils/constants'
 
 const Menu: FC = () => {
   return (
-    <ul className="flex items-center gap-8">
+    <ul className="flex items-center gap-8 ">
       <li>
         <NavLink
           to={baseUrl}
           className={({ isActive }) =>
             isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-accent no-underline"
+              : 'no-underline'
           }
           end
         >
@@ -23,8 +23,8 @@ const Menu: FC = () => {
           to={`${baseUrl}login`}
           className={({ isActive }) =>
             isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-accent no-underline"
+              : 'no-underline'
           }
         >
           Log In
@@ -35,8 +35,8 @@ const Menu: FC = () => {
           to={`${baseUrl}register`}
           className={({ isActive }) =>
             isActive
-              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-light no-underline text-light"
-              : 'text-light no-underline'
+              ? "relative after:absolute after:content-[''] after:left-0 after:right-0 after:-bottom-1.5 after:w-full after:h-0.5 after:bg-accent no-underline"
+              : 'no-underline'
           }
         >
           Sign Up

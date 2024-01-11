@@ -11,7 +11,7 @@ const Chart: FC<ChartProps> = ({ data }) => {
   const totalSum = dataItemsValues.reduce((a, b) => a + b, 0)
 
   return (
-    <Card className={`p-5 flex flex-wrap gap-y-4 bg-[#f8dfff] ${styles.chart}`}>
+    <Card className={`p-5 flex flex-wrap gap-y-4 bg-light ${styles.chart}`}>
       {data.map((item) => (
         <ChartBar key={item.label} data={item} total={totalSum} />
       ))}
